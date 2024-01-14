@@ -11,11 +11,11 @@ def admin_account():
 
 print("1. Panel klienta")
 print("2. Panel administratora ")
-user_input = int(input("Wybierz panel do którego chcesz się zalogować: "))
-if user_input == 1:
+user_input = input("Wybierz panel do którego chcesz się zalogować: ")
+if user_input == "1":
     print("Panel Klienta wciśnij 1")
     print("Zalogowałeś się do panelu klienta")
-elif user_input == 2:
+elif user_input == "2":
     print("PANEL ADMINISTRATORA ")
     print("Zalogowałeś się do panelu administratora")
 
@@ -62,3 +62,6 @@ elif user_choice == 6:
     print("6. EDYCJA DANYCH KONTAKTOWYCH")
 elif user_choice == 7:
     print("7. WYJŚCIE Z APLIKACJI/WYLOGOWANIE")
+
+else:
+    print(f"Przepraszam, wybrałeś {user_input}, nie jest to poprawny wybór")
