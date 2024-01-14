@@ -1,26 +1,24 @@
 
 
 
+# pozostałość logowania - do rewizji
+# def admin_account():
+#     adm_login = input("Podaj login:")
+#     adm_password = input("Podaj Hasło:")
 
-def admin_account():
-    adm_login = input("Podaj login:")
-    adm_password = input("Podaj Hasło:")
-
-    ###TODO JSON FILE
-    # if (adm_login and adm_password) == :
 
 def main_menu():
 
-    print("1. zaloguj się jako klienta")
-    print("2. zaloguj się jako administratora ")
+    print("1. ZALOGUJ SIĘ JAKO KLIENT")
+    print("2. ZALOGUJ SIĘ JAKO ADMINISTRATOR")
+    print("---------------------------------- \n")
     user_input = input("Wybierz panel do którego chcesz się zalogować: ")
+    print("---------------------------------- \n")
     if user_input == "1":
-        print("Panel Klienta wciśnij 1")
         print("Zalogowałeś się do panelu klienta")
 
         customer_board()
     elif user_input == "2":
-        print("PANEL ADMINISTRATORA ")
         print("Zalogowałeś się do panelu administratora")
 
         admin_board()
@@ -39,11 +37,12 @@ def customer_board():
     print("6. DANE KONTAKTOWE BIURA")
     print("7. REGULAMIN USŁUGI I OPCJE PŁATNOŚCI")
     print("8. WYJŚCIE Z APLIKACJI")
-    user_choice = input("Wybierz opcję wybierając odpowiednią cyfrę:")
+    print("---------------------------------- \n")
+    user_choice = input("Wybierz opcję wybierając odpowiednią cyfrę: ")
     while user_choice != "8":
         if user_choice == "1":
-            # print("1. NASZA OFERTA")
-            admin_account()
+            print("1. NASZA OFERTA")
+            # admin_account()
         elif user_choice == "2":
             print("2. SZCZEGÓŁOWE SPECYFIKACJE ORAZ CENNIK USŁUG")
         elif user_choice == "3":
@@ -72,7 +71,8 @@ def admin_board():
     print("5. EDYCJA REGULAMINU USŁUG")
     print("6. EDYCJA DANYCH KONTAKTOWYCH")
     print("7. WYJŚCIE Z APLIKACJI/WYLOGOWANIE")
-    user_choice = input("Wybierz opcję wybierając odpowiednią cyfrę:")
+    print("---------------------------------- \n")
+    user_choice = input("Wybierz opcję wybierając odpowiednią cyfrę: ")
     while user_choice != "7":
         if user_choice == "1":
             print("1. LISTA REZERWACJI I DANE SUMARYCZNE")
@@ -92,3 +92,4 @@ def admin_board():
             print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
 
 main_menu()
+
