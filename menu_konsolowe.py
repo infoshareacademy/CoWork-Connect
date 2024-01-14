@@ -1,20 +1,32 @@
 
 
-user_choice = input()
-user_input = input()
+
 
 def admin_account():
     adm_login = input("Podaj login:")
     adm_password = input("Podaj Hasło:")
-    if (adm_login and adm_password) == :
 
+    ###TODO JSON FILE
+    # if (adm_login and adm_password) == :
 
+print("1. Panel klienta")
+print("2. Panel administratora ")
+user_input = int(input("Wybierz panel do którego chcesz się zalogować: "))
 if user_input == 1:
     print("Panel Klienta wciśnij 1")
+    print("Zalogowałeś się do panelu klienta")
 elif user_input == 2:
     print("PANEL ADMINISTRATORA ")
+    print("Zalogowałeś się do panelu administratora")
 
-
+print("1. NASZA OFERTA")
+print("2. SZCZEGÓŁOWE SPECYFIKACJE ORAZ CENNIK USŁUG")
+print("3. DOSTĘPNOŚĆ BIUREK/STANOWISK")
+print("4. REZERWACJA BIURKA")
+print("5. ANULOWANIE REZERWACJI")
+print("6. DANE KONTAKTOWE BIURA")
+print("7. REGULAMIN USŁUGI I OPCJE PŁATNOŚCI")
+user_choice = input("Wybierz z ")
 # PANEL KLIENTA
 if user_choice == 1:
     print("1. NASZA OFERTA")
@@ -30,6 +42,8 @@ elif user_choice == 6:
     print("6. DANE KONTAKTOWE BIURA")
 elif user_choice == 7:
     print("7. REGULAMIN USŁUGI I OPCJE PŁATNOŚCI")
+
+
 elif user_choice == 8:
     print("8. WYJŚCIE Z APLIKACJI")
 #PANEL ADMINISTRATORA
