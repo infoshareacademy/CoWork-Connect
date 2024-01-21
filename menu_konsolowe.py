@@ -1,9 +1,12 @@
 from CoWork_klasy import *
 import json
+
 def show_admin_desks_view():
     print("Admin Desks View:")
-    for keys, values in desks_instances.items():
-        print(keys, values)
+    with open('desks.json', 'r', encoding='utf-8') as json_file:
+        desks_data = json.load(json_file)
+        for keys, values in desks_data.items():
+            print(keys, values)
 
 
 def add_desk():
@@ -30,7 +33,7 @@ def delete_desk():
 
 
 def save_tasks_to_file():
-    with open("desks.json", "w") as file:
+    with open("desks.json", "w", encoding='utf-8') as file:
         data = {}
         for name, desk in desks_instances.items():
             data[name] = {
@@ -38,7 +41,7 @@ def save_tasks_to_file():
                 "price": desk.price,
                 "status": desk.status,
             }
-        json.dump(data, file)
+        json.dump(data, file, indent=2)
     print("Zapisano biurka do pliku.")
 
 def customer_board():
