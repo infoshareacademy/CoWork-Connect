@@ -74,7 +74,10 @@ def print_menu_admin():
 def main_menu():
     user_choice = ""
 
+
     while user_choice != "3":
+        user_choice = input("Wybierz panel do którego chcesz się zalogować: ")
+
         if user_choice == "1":
             print("Panel Klienta")
             print("Zalogowałeś się do panelu klienta")
