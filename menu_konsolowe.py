@@ -38,7 +38,7 @@ def save_tasks_to_file():
                 "price": desk.price,
                 "status": desk.status,
             }
-        json.dump(data, file)
+        json.dump(data, file, indent=2)
     print("Zapisano biurka do pliku.")
 
 def customer_board():
