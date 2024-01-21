@@ -18,8 +18,13 @@ def customer_board():
         elif user_choice == "6":
             print("6. DANE KONTAKTOWE BIURA")
         elif user_choice == "7":
-            print("7. REGULAMIN USŁUGI I OPCJE PŁATNOŚCI")
-        elif user_choice != "8":
+            print("""
+            7. REGULAMIN USŁUGI I OPCJE PŁATNOŚCI
+            nie mamy jeszcze regulaminu i opcji płatności, ale stworzymy tekst i wrzucimy
+                  """)
+        elif user_choice == "8":
+            print("8. WYJŚCIE Z APLIKACJI")
+        else:
             print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
 
 
