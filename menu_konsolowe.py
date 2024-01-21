@@ -1,3 +1,33 @@
+from CoWork_klasy import *
+
+def show_admin_desks_view():
+    print("Admin Desks View:")
+    for keys, values in desks_instances.items():
+        print(keys, values)
+
+
+def add_desk():
+    name = input("Podaj nazwę biurka: ")
+    desk_type = input("Podaj typ biurka: ")
+    price = float(input("Podaj cenę biurka PLN/h: "))
+    status = input("Podaj status biurka: ")
+
+    new_desk = Desks(name, desk_type, price, status)
+    desks_instances[name] = new_desk
+    print("Dodano biurko!")
+
+
+def delete_desk():
+    desk_index = int(input("Podaj indeks biurka do usunięcia: "))
+
+    if desk_index < 0 or desk_index > len(desks_instances) - 1:
+        print("Biurko o tym indeksie nie istnieje")
+        return
+
+    desks_instances.pop(desk_index)
+    print("Usunięto biurko!")
+
+
 def customer_board():
     user_choice = ""
 
@@ -37,10 +67,16 @@ def admin_board():
 
         if user_choice == "1":
             print("1. LISTA REZERWACJI I DANE SUMARYCZNE")
+            show_admin_desks_view()
+
         elif user_choice == "2":
             print("2. DODWANIE BIURKA/STANOWISKA")
+            add_desk()
+
         elif user_choice == "3":
             print("3. USUWANIE BIURKA/STANOWISKA")
+            delete_desk()
+
         elif user_choice == "4":
             print("4. ANULOWANIE REZERWACJI")
         elif user_choice == "5":
@@ -79,7 +115,6 @@ def print_menu_admin():
 def main_menu():
     user_choice = ""
 
-
     while user_choice != "3":
         print("1. Zaloguj się jako klienta")
         print("2. Zaloguj się jako administratora ")
@@ -100,8 +135,6 @@ def main_menu():
 
         else:
             print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
-
-
 
 
 if __name__ == "__main__":
