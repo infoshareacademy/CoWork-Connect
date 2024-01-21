@@ -76,6 +76,9 @@ def main_menu():
 
 
     while user_choice != "3":
+        print("1. Zaloguj się jako klienta")
+        print("2. Zaloguj się jako administratora ")
+        print("3. WYJŚCIE Z APLIKACJI")
         user_choice = input("Wybierz panel do którego chcesz się zalogować: ")
 
         if user_choice == "1":
@@ -93,11 +96,7 @@ def main_menu():
         else:
             print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
 
-        print("1. Zaloguj się jako klienta")
-        print("2. Zaloguj się jako administratora ")
-        print("3. WYJŚCIE Z APLIKACJI")
 
-        user_choice = input("Wybierz panel do którego chcesz się zalogować: ")
 
 
 if __name__ == "__main__":
