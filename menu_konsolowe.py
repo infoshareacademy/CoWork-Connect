@@ -1,10 +1,3 @@
-from CoWork_klasy import *
-from pprint import pprint
-
-
-
-
-
 def customer_board():
     user_choice = ""
 
@@ -16,7 +9,6 @@ def customer_board():
             print("1. NASZA OFERTA")
         elif user_choice == "2":
             print("2. SZCZEGÓŁOWE SPECYFIKACJE ORAZ CENNIK USŁUG")
-            pprint(desks_instances)
         elif user_choice == "3":
             print("3. DOSTĘPNOŚĆ BIUREK/STANOWISK")
         elif user_choice == "4":
@@ -40,16 +32,10 @@ def admin_board():
 
         if user_choice == "1":
             print("1. LISTA REZERWACJI I DANE SUMARYCZNE")
-            # show_admin_desks_view()
-
         elif user_choice == "2":
             print("2. DODWANIE BIURKA/STANOWISKA")
-            # add_desk()
-
         elif user_choice == "3":
             print("3. USUWANIE BIURKA/STANOWISKA")
-            # delete_desk()
-
         elif user_choice == "4":
             print("4. ANULOWANIE REZERWACJI")
         elif user_choice == "5":
