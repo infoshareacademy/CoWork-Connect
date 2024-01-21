@@ -1,5 +1,5 @@
 from CoWork_klasy import *
-
+import json
 def show_admin_desks_view():
     print("Admin Desks View:")
     for keys, values in desks_instances.items():
@@ -17,6 +17,7 @@ def add_desk():
     print("Dodano biurko!")
 
 
+
 def delete_desk():
     desk_index = int(input("Podaj indeks biurka do usunięcia: "))
 
@@ -27,6 +28,18 @@ def delete_desk():
     desks_instances.pop(desk_index)
     print("Usunięto biurko!")
 
+
+def save_tasks_to_file():
+    with open("desks.json", "w") as file:
+        data = {}
+        for name, desk in desks_instances.items():
+            data[name] = {
+                "desk_type": desk.desk_type,
+                "price": desk.price,
+                "status": desk.status,
+            }
+        json.dump(data, file)
+    print("Zapisano biurka do pliku.")
 
 def customer_board():
     user_choice = ""
@@ -85,7 +98,8 @@ def admin_board():
             print("6. EDYCJA DANYCH KONTAKTOWYCH")
         elif user_choice == "7":
             print("7. ZAPISZ ZMIANY")
-            # save_tasks_to_file()
+            save_tasks_to_file()
+
         elif user_choice != "8":
             print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
 
@@ -108,7 +122,7 @@ def print_menu_admin():
     print("4. ANULOWANIE REZERWACJI")
     print("5. EDYCJA REGULAMINU USŁUG")
     print("6. EDYCJA DANYCH KONTAKTOWYCH")
-    print("7. WYJŚCIE Z APLIKACJI/WYLOGOWANIE")
+    print("7. ZAPISZ ZMIANY")
     print("8. WYJŚCIE Z APLIKACJI")
 
 
