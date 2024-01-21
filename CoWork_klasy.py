@@ -1,17 +1,19 @@
 class Desks:
-    def __init__(self, name, desk, price, status):
+    def __init__(self, name, desk_type, price, status):
         self.name = name
-        self.desk = desk
+        self.desk_type = desk_type
         self.price = price
         self.status = status
 
     def __str__(self):
-        return f". {self.name}, {self.desk}, Cena: {self.price} PLN/h, Status: {self.status}"
+        return f" {self.desk_type}, Cena: {self.price} PLN/h, Status: {self.status}"
+
+
 
 # Create instances for each entry in the dictionary
 desks_instances = {
     "Biurko nr 1": Desks(
-        "Biurko nr 1", "Biurko pojedyncze bez monitora, trzy gniazdka", 50, "czynne",
+        "Biurko nr 1", "Biurko pojedyncze bez monitora, trzy gniazdka", 50, "czynne"
     ),
     "Biurko nr 2": Desks(
         "Biurko nr 2", "Biurko pojedyncze bez monitora, trzy gniazdka", 50, "czynne"
