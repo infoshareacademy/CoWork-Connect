@@ -1,5 +1,7 @@
 from CoWork_klasy import *
 import json
+
+
 def show_admin_desks_view():
     print("Admin Desks View:")
     for keys, values in desks_instances.items():
@@ -17,16 +19,33 @@ def add_desk():
     print("Dodano biurko!")
 
 
-
 def delete_desk():
-    desk_index = int(input("Podaj indeks biurka do usunięcia: "))
+    print("Aktualne Biurka:")
+    for idx, (name, desk) in enumerate(desks_instances.items()):
+        print(f"{idx}. {name} - {desk.desk_type} - {desk.price} PLN/h - {desk.status}")
 
-    if desk_index < 0 or desk_index > len(desks_instances) - 1:
-        print("Biurko o tym indeksie nie istnieje")
+    if not desks_instances:
+        print("Brak dostępnych biurek do usunięcia.")
         return
 
-    desks_instances.pop(desk_index)
-    print("Usunięto biurko!")
+    try:
+        del_desk = int(
+            input("Podaj indeks biurka do usunięcia (lub -1, aby anulować): ")
+        )
+
+        if del_desk == -1:
+            print("Anulowano usunięcie.")
+            return
+
+        if 0 <= del_desk < len(desks_instances):
+            desk_name = list(desks_instances.keys())[del_desk]
+            desks_instances.pop(desk_name)
+            print(f"Usunięto biurko: {desk_name}")
+        else:
+            print("Nieprawidłowy indeks. Nie usunięto żadnego biurka.")
+
+    except ValueError:
+        print("Nieprawidłowe dane wejściowe. Podaj prawidłowy indeks.")
 
 
 def save_tasks_to_file():
@@ -40,6 +59,7 @@ def save_tasks_to_file():
             }
         json.dump(data, file, indent=2)
     print("Zapisano biurka do pliku.")
+
 
 def customer_board():
     user_choice = ""
@@ -61,10 +81,12 @@ def customer_board():
         elif user_choice == "6":
             print("6. DANE KONTAKTOWE BIURA")
         elif user_choice == "7":
-            print("""
+            print(
+                """
             7. REGULAMIN USŁUGI I OPCJE PŁATNOŚCI
             nie mamy jeszcze regulaminu i opcji płatności, ale stworzymy tekst i wrzucimy
-                  """)
+                  """
+            )
         elif user_choice == "8":
             print("8. WYJŚCIE Z APLIKACJI")
         else:
