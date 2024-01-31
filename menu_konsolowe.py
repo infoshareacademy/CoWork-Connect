@@ -6,7 +6,12 @@ def customer_board():
         user_choice = input("Wybierz opcję wybierając odpowiednią cyfrę:")
 
         if user_choice == "1":
-            print("1. NASZA OFERTA")
+            with open("dane do printu.txt", "r") as file:
+                lines = file.readlines()
+                fragment = lines[0:10]
+                for line in fragment:
+                    print(line.strip())
+                print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "2":
             print("2. SZCZEGÓŁOWE SPECYFIKACJE ORAZ CENNIK USŁUG")
         elif user_choice == "3":
@@ -16,12 +21,19 @@ def customer_board():
         elif user_choice == "5":
             print("5. ANULOWANIE REZERWACJI")
         elif user_choice == "6":
-            print("6. DANE KONTAKTOWE BIURA")
+            with open("dane do printu.txt", "r") as file:
+                lines = file.readlines()
+                fragment = lines[70:86]
+                for line in fragment:
+                    print(line.strip())
+                print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "7":
-            print("""
-            7. REGULAMIN USŁUGI I OPCJE PŁATNOŚCI
-            nie mamy jeszcze regulaminu i opcji płatności, ale stworzymy tekst i wrzucimy
-                  """)
+            with open("dane do printu.txt", "r") as file:
+                lines = file.readlines()
+                fragment = lines[10:70]
+                for line in fragment:
+                    print(line.strip())
+                print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "8":
             print("8. WYJŚCIE Z APLIKACJI")
         else:
@@ -81,8 +93,8 @@ def main_menu():
 
 
     while user_choice != "3":
-        print("1. Zaloguj się jako klienta")
-        print("2. Zaloguj się jako administratora ")
+        print("1. Zaloguj się jako klient")
+        print("2. Zaloguj się jako administrator")
         print("3. WYJŚCIE Z APLIKACJI")
         user_choice = input("Wybierz panel do którego chcesz się zalogować: ")
 
