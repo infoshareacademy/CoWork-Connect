@@ -6,14 +6,15 @@ def customer_board():
         user_choice = input("Wybierz opcję wybierając odpowiednią cyfrę:")
 
         if user_choice == "1":
-            with open("dane do printu.txt", "r") as file:
-                lines = file.readlines()
-                fragment = lines[0:10]
-                for line in fragment:
-                    print(line.strip())
+            with open("oferta_biura.txt","r") as file:
+                text = file.read()
+                print(text)
                 print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "2":
-            print("2. SZCZEGÓŁOWE SPECYFIKACJE ORAZ CENNIK USŁUG")
+            with open("specyfikacje_i_cennik.txt", "r") as file:
+                text = file.read()
+                print(text)
+                print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "3":
             print("3. DOSTĘPNOŚĆ BIUREK/STANOWISK")
         elif user_choice == "4":
@@ -21,18 +22,14 @@ def customer_board():
         elif user_choice == "5":
             print("5. ANULOWANIE REZERWACJI")
         elif user_choice == "6":
-            with open("dane do printu.txt", "r") as file:
-                lines = file.readlines()
-                fragment = lines[70:86]
-                for line in fragment:
-                    print(line.strip())
+            with open("dane_kontakowe.txt","r") as file:
+                text = file.read()
+                print(text)
                 print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "7":
-            with open("dane do printu.txt", "r") as file:
-                lines = file.readlines()
-                fragment = lines[10:70]
-                for line in fragment:
-                    print(line.strip())
+            with open("regulamin_i_opcje_platnosci.txt", "r") as file:
+                text = file.read()
+                print(text)
                 print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "8":
             print("8. WYJŚCIE Z APLIKACJI")
