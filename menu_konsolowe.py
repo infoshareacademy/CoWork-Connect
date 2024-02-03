@@ -24,14 +24,25 @@ def load_desks_from_file(filename):
         return {}
 
 
-# Użycie funkcji do wczytania danych z pliku JSON
 desks_instances = load_desks_from_file("desks.json")
 
 
 def show_admin_desks_view():
     print("Admin Desks View:")
-    for keys, values in desks_instances.items():
-        print(keys, values)
+
+    try:
+        with open("desk.json", "r") as file:
+            desks_instances = json.load(file)
+
+            if not desks_instances:
+                print("Brak biurek do wyświetlenia.")
+                return
+
+            for name, desk_data in desks_instances.items():
+                print(f"{name}: {json.dumps(desk_data, indent=2)}")
+
+    except FileNotFoundError:
+        print("Plik desk.json nie istnieje. Brak biurek do wyświetlenia.")
 
 
 def add_desk():
