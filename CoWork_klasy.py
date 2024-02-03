@@ -6,8 +6,14 @@ class Desks:
         self.status = status
 
     def __str__(self):
-        return f" {self.desk_type}, Cena: {self.price} PLN/h, Status: {self.status}"
+        return f"{self.name} - {self.desk_type} - {self.price} PLN/h - {self.status}"
 
+    def to_dict(self):
+        return {
+            "desk_type": self.desk_type,
+            "price": self.price,
+            "status": self.status,
+        }
 
 
 # Create instances for each entry in the dictionary
