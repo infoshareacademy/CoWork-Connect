@@ -24,10 +24,9 @@ def size_choosing():
                 print("Wprowadzono niewłaściwą wartość, podaj wartość cyfrą: 1, 4 lub 10.")
         else:
             print("Wprowadzono niewłaściwą wartość, podaj wartość cyfrą: 1, 4 lub 10.")
-
 user_choice_size = size_choosing()
 
-print(f"Twój wybór padł na biurko {user_choice_size}-osobowe.")
+print(f"Twój wybór to biurko {user_choice_size}-osobowe.")
 print("Czy interesuje Cię biurko z monitorem czy bez?")
 print("Biurko z monitorem - wprowadź cyfrę 1")
 print("Biurko bez monitora - wprowadź cyfrę 2")
@@ -46,7 +45,6 @@ def display_choosing():
                 print("Wprowadzono niewłaściwą wartość, podaj 1 lub 2.")
         else:
             print("Wprowadzono niewłaściwą wartość, podaj wartość 1 lub 2.")
-
 user_choice_display = display_choosing()
 
 def presenting_avaliability():
@@ -86,11 +84,10 @@ def presenting_avaliability():
         size = '10 osobowe'
         display = 'monitorów'
         return size, display
-
 size, display = presenting_avaliability()
 reading_database('desks.json', size, display)
 
-print("Oto lista dostępnych biurek. Wprowadź ID wybranego przez siebie biurka poniżej.")
+print("Oto lista dostępnych biurek.")
 user_desk_choice = input("Wprowadź numer wybranego przez siebie biurka: ")
 desk_price, desk_name = choosing_desk(user_desk_choice)
 
@@ -107,7 +104,6 @@ def value_calculating(desk_price):
             valid_choice = False
         else:
             print("Wprowadź poprawną wartość liczbową (cyfrę - np. 8).")
-
 total_value, user_hours_choice = value_calculating(desk_price)
 print(f"Wybrałeś {desk_name}, całkowita cena wynajmu wyniesie {total_value} PLN.")
 
@@ -127,6 +123,5 @@ def confirming_inputed_data(desk_name, user_hours_choice):
             print("Nie potwierdzono")
         else:
             print("Wprowadzono niewłaściwą odpowiedź, wprowadź odpowiedź tak lub nie")
-
 confirming_inputed_data(desk_name, user_hours_choice)
 print("Do widzenia")
