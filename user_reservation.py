@@ -1,3 +1,4 @@
+from clients_db import saving_clients_data
 from desk_database_checker import reading_database, choosing_desk
 from userdata_input import user_data_input
 
@@ -37,38 +38,45 @@ while valid_choice:
     else:
         print("Wprowadzono niewłaściwą wartość, podaj wartość 1 lub 2.")
 
+def presenting_avaliability():
+    if int(user_choice_size) == 1 and int(user_choice_display) == 1:
+        print("Prezentuję ofertę dostępnych biurek 1-osobowych z monitorem")
+        size = 'pojedyncze'
+        display = 'monitorem'
+        return size, display
 
-if int(user_choice_size) == 1 and int(user_choice_display) == 1:
-    print("Prezentuję ofertę dostępnych biurek 1-osobowych z monitorem")
-    size = 'pojedyncze'
-    display = 'monitorem'
+    elif int(user_choice_size) == 1 and int(user_choice_display) == 2:
+        print("Prezentuję ofertę dostępnych biurek 1-osobowych bez monitora")
+        reading_database('desks.json')
+        size = 'pojedyncze'
+        display = 'bez monitora'
+        return size, display
 
-elif int(user_choice_size) == 1 and int(user_choice_display) == 2:
-    print("Prezentuję ofertę dostępnych biurek 1-osobowych bez monitora")
-    reading_database('desks.json')
-    size = 'pojedyncze'
-    display = 'bez monitora'
+    elif int(user_choice_size) == 4 and int(user_choice_display) == 1:
+        print("Prezentuję ofertę dostępnych biurek 4-osobowych z monitorem")
+        size = '4 osobowe'
+        display = 'z monitorami'
+        return size, display
 
-elif int(user_choice_size) == 4 and int(user_choice_display) == 1:
-    print("Prezentuję ofertę dostępnych biurek 4-osobowych z monitorem")
-    size = '4 osobowe'
-    display = 'z monitorami'
+    elif int(user_choice_size) == 4 and int(user_choice_display) == 2:
+        print("Prezentuję ofertę dostępnych biurek 4-osobowych bez monitora")
+        size = '4 osobowe'
+        display = 'bez monitorów'
+        return size, display
 
-elif int(user_choice_size) == 4 and int(user_choice_display) == 2:
-    print("Prezentuję ofertę dostępnych biurek 4-osobowych bez monitora")
-    size = '4 osobowe'
-    display = 'bez monitorów'
+    elif int(user_choice_size) == 10 and int(user_choice_display) == 1:
+        print("Prezentuję ofertę dostępnych biurek 10-osobowych z monitorem")
+        size = '10 osobowe'
+        display = 'monitorami'
+        return size, display
 
-elif int(user_choice_size) == 10 and int(user_choice_display) == 1:
-    print("Prezentuję ofertę dostępnych biurek 10-osobowych z monitorem")
-    size = '10 osobowe'
-    display = 'monitorami'
+    elif int(user_choice_size) == 10 and int(user_choice_display) == 2:
+        print("Prezentuję ofertę dostępnych biurek 10-osobowych bez monitora")
+        size = '10 osobowe'
+        display = 'monitorów'
+        return size, display
 
-elif int(user_choice_size) == 10 and int(user_choice_display) == 2:
-    print("Prezentuję ofertę dostępnych biurek 10-osobowych bez monitora")
-    size = '10 osobowe'
-    display = 'monitorów'
-
+size, display = presenting_avaliability()
 reading_database('desks.json', size, display)
 
 
@@ -89,16 +97,19 @@ while valid_choice:
     else:
         print("Wprowadź poprawną wartość liczbową (cyfrę - np. 8).")
 
-print(f"Wybrałeś {desk_name}, całkowita kwota wynajmu wyniesie {total_value} PLN.")
+print(f"Wybrałeś {desk_name}, całkowita cena wynajmu wyniesie {total_value} PLN.")
 valid_choice = True
 while valid_choice:
     accepting_order = input("Potwierdź czy powyższe informacje się zgadzają (tak lub nie): ")
     if accepting_order.lower() == 'tak':
         print("Potwierdzono")
+        name, surname, phone, email = user_data_input()
+        date = '10.01.2024'
+        reservation_id = saving_clients_data(desk_name, date, user_hours_choice, name, surname, phone, email)
+        print(f"Zapisano pomyślnie dane. Twoj numer rezerwacji to: {reservation_id}")
         valid_choice = False
     elif accepting_order.lower() == 'nie':
         print("Nie potwierdzono")
     else:
         print("Wprowadzono niewłaściwą odpowiedź, wprowadź odpowiedź tak lub nie")
 
-user_data_input()
