@@ -1,9 +1,48 @@
 from CoWork_klasy import *
 import json
+
+
+def load_desks_from_file(filename):
+    try:
+        with open(filename, "r") as file:
+            data = json.load(file)
+            desks_instances = {}
+
+            for name, desk_data in data.items():
+                desk = Desks(
+                    name,
+                    desk_data.get("desk_type", ""),
+                    desk_data.get("price", 0.0),
+                    desk_data.get("status", ""),
+                )
+                desks_instances[name] = desk
+
+            return desks_instances
+
+    except FileNotFoundError:
+        print(f"Plik {filename} nie istnieje. Tworzę nowy słownik desks_instances.")
+        return {}
+
+
+desks_instances = load_desks_from_file("desks.json")
+
+
 def show_admin_desks_view():
     print("Admin Desks View:")
-    for keys, values in desks_instances.items():
-        print(keys, values)
+
+    try:
+        with open("desk.json", "r") as file:
+            desks_instances = json.load(file)
+
+            if not desks_instances:
+                print("Brak biurek do wyświetlenia.")
+                return
+
+            for name, desk_data in desks_instances.items():
+                print(f"{name}: {json.dumps(desk_data, indent=2)}")
+
+    except FileNotFoundError:
+        print("Plik desk.json nie istnieje. Brak biurek do wyświetlenia.")
 
 
 def add_desk():
@@ -17,29 +56,42 @@ def add_desk():
     print("Dodano biurko!")
 
 
-
 def delete_desk():
-    desk_index = int(input("Podaj indeks biurka do usunięcia: "))
+    print("Aktualne Biurka:")
+    for idx, (name, desk) in enumerate(desks_instances.items()):
+        print(f"{idx}. {desk}")
 
-    if desk_index < 0 or desk_index > len(desks_instances) - 1:
-        print("Biurko o tym indeksie nie istnieje")
+    if not desks_instances:
+        print("Brak dostępnych biurek do usunięcia.")
         return
 
-    desks_instances.pop(desk_index)
-    print("Usunięto biurko!")
+    try:
+        del_desk = input(
+            "Podaj nazwę biurka do usunięcia (lub wpisz -1, aby anulować): "
+        )
+
+        if del_desk == "-1":
+            print("Anulowano usunięcie.")
+            return
+
+        if del_desk in desks_instances:
+            desks_instances.pop(del_desk)
+            print(f"Usunięto biurko: {del_desk}")
+        else:
+            print("Nieprawidłowa nazwa biurka. Nie usunięto żadnego biurka.")
+
+    except ValueError:
+        print("Nieprawidłowe dane wejściowe. Podaj prawidłową nazwę biurka.")
 
 
-def save_tasks_to_file():
+def save_desks_to_file():
     with open("desks.json", "w") as file:
         data = {}
         for name, desk in desks_instances.items():
-            data[name] = {
-                "desk_type": desk.desk_type,
-                "price": desk.price,
-                "status": desk.status,
-            }
-        json.dump(data, file)
+            data[name] = desk.to_dict()
+        json.dump(data, file, indent=2)
     print("Zapisano biurka do pliku.")
+
 
 def customer_board():
     user_choice = ""
@@ -61,10 +113,12 @@ def customer_board():
         elif user_choice == "6":
             print("6. DANE KONTAKTOWE BIURA")
         elif user_choice == "7":
-            print("""
+            print(
+                """
             7. REGULAMIN USŁUGI I OPCJE PŁATNOŚCI
             nie mamy jeszcze regulaminu i opcji płatności, ale stworzymy tekst i wrzucimy
-                  """)
+                  """
+            )
         elif user_choice == "8":
             print("8. WYJŚCIE Z APLIKACJI")
         else:
@@ -98,7 +152,7 @@ def admin_board():
             print("6. EDYCJA DANYCH KONTAKTOWYCH")
         elif user_choice == "7":
             print("7. ZAPISZ ZMIANY")
-            save_tasks_to_file()
+            save_desks_to_file()
 
         elif user_choice != "8":
             print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
