@@ -22,7 +22,6 @@ def saving_clients_data(desk_name, date, user_hours_choice, name, surname, phone
 
     with open('user_data.json', 'w') as file:
         json.dump(data, file, indent=4)
-
     return reservation_id
 
 if __name__ == '__main__':
