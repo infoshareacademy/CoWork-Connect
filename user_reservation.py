@@ -90,11 +90,9 @@ def presenting_avaliability():
 size, display = presenting_avaliability()
 reading_database('desks.json', size, display)
 
-
 print("Oto lista dostępnych biurek. Wprowadź ID wybranego przez siebie biurka poniżej.")
 user_desk_choice = input("Wprowadź numer wybranego przez siebie biurka: ")
 desk_price, desk_name = choosing_desk(user_desk_choice)
-
 
 def value_calculating(desk_price):
     valid_choice = True
@@ -122,7 +120,8 @@ def confirming_inputed_data(desk_name, user_hours_choice):
             name, surname, phone, email = user_data_input()
             date = '10.01.2024'
             reservation_id = saving_clients_data(desk_name, date, user_hours_choice, name, surname, phone, email)
-            print(f"Zapisano pomyślnie dane. Twoj numer rezerwacji to: {reservation_id}")
+            print(f"Zapisano pomyślnie dane.")
+            print(f"Twoj numer rezerwacji to: {reservation_id}, który został przypisany do numeru telefonu: {phone}")
             valid_choice = False
         elif accepting_order.lower() == 'nie':
             print("Nie potwierdzono")
@@ -130,3 +129,4 @@ def confirming_inputed_data(desk_name, user_hours_choice):
             print("Wprowadzono niewłaściwą odpowiedź, wprowadź odpowiedź tak lub nie")
 
 confirming_inputed_data(desk_name, user_hours_choice)
+print("Do widzenia")
