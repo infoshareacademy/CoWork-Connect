@@ -18,5 +18,25 @@
         "Nazwisko": "asdasd",
         "Telefon": "222333444",
         "Email": "ssdasdasdasd@wp.pl"
+    },
+    {
+        "ID rezerwacji": 3,
+        "Biurko": "Biurko nr 61-70",
+        "Data wynajmu": "10.01.2024",
+        "D\u0142ugo\u015b\u0107 wynajmu": 10,
+        "Imi\u0119": "SDasda",
+        "Nazwisko": "asdasd",
+        "Telefon": "147852369",
+        "Email": "asdasdasd@wp.pl"
+    },
+    {
+        "ID rezerwacji": 4,
+        "Biurko": "Biurko nr 61-70",
+        "Data wynajmu": "10.01.2024",
+        "D\u0142ugo\u015b\u0107 wynajmu": 10,
+        "Imi\u0119": "Anna",
+        "Nazwisko": "Jantar",
+        "Telefon": "111222333",
+        "Email": "asdasdasd@wp.pl"
     }
 ]
