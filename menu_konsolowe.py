@@ -39,11 +39,11 @@ def add_desk():
 
 
 def delete_desk():
-    desks_instances = load_desks_from_file()
+    desks_instances = load_desks_from_file("desks.json")
 
     print("Akturalne biurka:")
     for desk in desks_instances.values():
-        print(f"Id: {desk.idx}. {desk.name}, {json.dump(desk.to_dict(), indent=2)} ")
+        print(f"Id: {desk.idx}. {desk.name}, {json.dumps(desk.to_dict(), indent=2)} ")
 
     if not desks_instances:
         print("Brak dostępnych biurek do usunięcia!")

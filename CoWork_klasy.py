@@ -25,7 +25,7 @@ class Desks:
 
 
 # Create instances for each entry in the dictionary
-def load_desks_from_file():
+def load_desks_from_file(filename="desks.json"):
     try:
         with open("desks.json", "r") as file:
             desks_data = json.load(file)
