@@ -2,36 +2,11 @@ from CoWork_klasy import *
 import json
 
 
-def load_desks_from_file(filename):
-    try:
-        with open(filename, "r") as file:
-            data = json.load(file)
-            desks_instances = {}
-
-            for name, desk_data in data.items():
-                desk = Desks(
-                    name,
-                    desk_data.get("desk_type", ""),
-                    desk_data.get("price", 0.0),
-                    desk_data.get("status", ""),
-                )
-                desks_instances[name] = desk
-
-            return desks_instances
-
-    except FileNotFoundError:
-        print(f"Plik {filename} nie istnieje. Tworzę nowy słownik desks_instances.")
-        return {}
-
-
-desks_instances = load_desks_from_file("desks.json")
-
-
 def show_admin_desks_view():
     print("Admin Desks View:")
 
     try:
-        with open("desk.json", "r") as file:
+        with open("desks.json", "r") as file:
             desks_instances = json.load(file)
 
             if not desks_instances:
@@ -42,49 +17,61 @@ def show_admin_desks_view():
                 print(f"{name}: {json.dumps(desk_data, indent=2)}")
 
     except FileNotFoundError:
-        print("Plik desk.json nie istnieje. Brak biurek do wyświetlenia.")
+        print("Plik desks.json nie istnieje. Brak biurek do wyświetlenia.")
 
 
 def add_desk():
+    desks_instances = load_desks_from_file("desks.json")
+
+    idx = len(desks_instances.keys()) + 1
     name = input("Podaj nazwę biurka: ")
     desk_type = input("Podaj typ biurka: ")
+    monitor = input("Czy biurko ma monitor? (True/False): ").lower() == "true"
+    rozmiar = int(input("Podaj rozmiar biurka: "))
     price = float(input("Podaj cenę biurka PLN/h: "))
     status = input("Podaj status biurka: ")
 
-    new_desk = Desks(name, desk_type, price, status)
-    desks_instances[name] = new_desk
+    new_desk = Desks(idx, name, desk_type, monitor, rozmiar, price, status)
+    desks_instances[idx] = new_desk
     print("Dodano biurko!")
+
+    save_desks_to_file(desks_instances)
 
 
 def delete_desk():
-    print("Aktualne Biurka:")
-    for idx, (name, desk) in enumerate(desks_instances.items()):
-        print(f"{idx}. {desk}")
+    desks_instances = load_desks_from_file()
+
+    print("Akturalne biurka:")
+    for desk in desks_instances.values():
+        print(f"Id: {desk.idx}. {desk.name}, {json.dump(desk.to_dict(), indent=2)} ")
 
     if not desks_instances:
-        print("Brak dostępnych biurek do usunięcia.")
+        print("Brak dostępnych biurek do usunięcia!")
         return
 
     try:
-        del_desk = input(
-            "Podaj nazwę biurka do usunięcia (lub wpisz -1, aby anulować): "
-        )
+        del_desk_name = input("Podaj indeks biurka do usunięcia (lub wpisz -1, żeby anulować): ")
 
-        if del_desk == "-1":
+        if del_desk_name == "-1":
             print("Anulowano usunięcie.")
             return
 
-        if del_desk in desks_instances:
-            desks_instances.pop(del_desk)
-            print(f"Usunięto biurko: {del_desk}")
+        if del_desk_name in desks_instances:
+            desks_instances.pop(del_desk_name)
+            print(f"Usunięto biurko: {del_desk_name}")
+
         else:
             print("Nieprawidłowa nazwa biurka. Nie usunięto żadnego biurka.")
+
+        save_desks_to_file(desks_instances)
 
     except ValueError:
         print("Nieprawidłowe dane wejściowe. Podaj prawidłową nazwę biurka.")
 
 
-def save_desks_to_file():
+
+
+def save_desks_to_file(desks_instances):
     with open("desks.json", "w") as file:
         data = {}
         for name, desk in desks_instances.items():
