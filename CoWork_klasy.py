@@ -24,7 +24,7 @@ class Desks:
 
 
 
-# Create instances for each entry in the dictionary
+# Funkcje dodatkowe wywoływane przez funkcje w pliku menu konsolowe
 def load_desks_from_file(filename="desks.json"):
     try:
         with open("desks.json", "r") as file:
@@ -47,3 +47,12 @@ def load_desks_from_file(filename="desks.json"):
     except FileNotFoundError:
         print("Plik desks.json nie został znaleziony.")
         return {}
+
+def save_desks_to_file(desks_instances):
+    with open("desks.json", "w") as file:
+        data = {}
+        for name, desk in desks_instances.items():
+            data[name] = desk.to_dict()
+        json.dump(data, file, indent=2)
+    print("Zapisano biurka do pliku.")
+

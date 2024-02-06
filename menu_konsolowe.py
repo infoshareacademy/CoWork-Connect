@@ -26,10 +26,51 @@ def add_desk():
     idx = len(desks_instances.keys()) + 1
     name = input("Podaj nazwę biurka: ")
     desk_type = input("Podaj typ biurka: ")
-    monitor = input("Czy biurko ma monitor? (True/False): ").lower() == "true"
-    rozmiar = int(input("Podaj rozmiar biurka: "))
-    price = float(input("Podaj cenę biurka PLN/h: "))
-    status = input("Podaj status biurka: ")
+
+    # Walidacja monitora
+    monitor_options = {1: "false", 2: "true"}
+
+    while True:
+        try:
+            options_string = ", ".join(f"{key}. \"{value}\"" for key, value in monitor_options.items())
+            monitor_input = input(f"Czy biurko ma monitor? ({options_string}): ")
+            monitor_choice = int(monitor_input)
+
+            if monitor_choice in monitor_options:
+                monitor = monitor_options[monitor_choice]
+                break
+            else:
+                print("Błąd: Wprowadź prawidłową opcję.")
+        except ValueError:
+            print("Błąd: Wprowadź cyfrę 1 lub 2, aby wybrać opcję.")
+
+    # Walidacja rozmiaru
+    while True:
+        try:
+            rozmiar = int(input("Podaj rozmiar biurka: "))
+            break
+        except ValueError:
+            print("Błąd: Wprowadź liczbę całkowitą dla rozmiaru.")
+
+    # Walidacja ceny
+    while True:
+        try:
+            price = float(input("Podaj cenę biurka PLN/h: "))
+            break
+        except ValueError:
+            print("Błąd: Wprowadź liczbę dla ceny.")
+
+    status_options = ["czynne", "nieczynne", "inne"]
+
+    # Walidacja statusu
+    status_options = {1: "czynne", 2: "zajęte",3: "inne"}
+    while True:
+        status_options_string = ", ".join(f"{key}. / {value}" for key, value in status_options)
+        status = input(f"Podaj status biurka, wybierając odpowiednią opcję ({status_options_string})")
+        if status in status_options:
+            break
+        else:
+            print("Błąd: Wprowadź prawidłowy status.")
 
     new_desk = Desks(idx, name, desk_type, monitor, rozmiar, price, status)
     desks_instances[idx] = new_desk
@@ -43,7 +84,7 @@ def delete_desk():
 
     print("Akturalne biurka:")
     for desk in desks_instances.values():
-        print(f"Id: {desk.idx}. {desk.name}, {json.dumps(desk.to_dict(), indent=2)} ")
+        print(f"Id: {desk.name}, {json.dumps(desk.to_dict(), indent=2)} ")
 
     if not desks_instances:
         print("Brak dostępnych biurek do usunięcia!")
@@ -68,16 +109,6 @@ def delete_desk():
     except ValueError:
         print("Nieprawidłowe dane wejściowe. Podaj prawidłową nazwę biurka.")
 
-
-
-
-def save_desks_to_file(desks_instances):
-    with open("desks.json", "w") as file:
-        data = {}
-        for name, desk in desks_instances.items():
-            data[name] = desk.to_dict()
-        json.dump(data, file, indent=2)
-    print("Zapisano biurka do pliku.")
 
 
 def customer_board():
