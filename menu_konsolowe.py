@@ -1,3 +1,6 @@
+from CoWork_klasy import *
+
+
 def customer_board():
     user_choice = ""
 
@@ -6,15 +9,18 @@ def customer_board():
         user_choice = input("Wybierz opcję wybierając odpowiednią cyfrę:")
 
         if user_choice == "1":
-            with open("oferta_biura.txt","r") as file:
+            with open("oferta_biura.txt", "r") as file:
                 text = file.read()
                 print(text)
                 print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "2":
-            with open("specyfikacje_i_cennik.txt", "r") as file:
-                text = file.read()
-                print(text)
-                print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
+
+            desks_instances = load_desks_from_file("desks.json")
+
+            print("Szczegółowe specyfikacje oraz cennik biurek:")
+            for desk in desks_instances.values():
+                print(f" Numer {desk.name} - rodzaj: {desk.desk_type}, cena: {desk.price} PLN, status: {desk.status}")
+            print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "3":
             print("3. DOSTĘPNOŚĆ BIUREK/STANOWISK")
         elif user_choice == "4":
@@ -22,7 +28,7 @@ def customer_board():
         elif user_choice == "5":
             print("5. ANULOWANIE REZERWACJI")
         elif user_choice == "6":
-            with open("dane_kontakowe.txt","r") as file:
+            with open("dane_kontakowe.txt", "r") as file:
                 text = file.read()
                 print(text)
                 print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
@@ -88,7 +94,6 @@ def print_menu_admin():
 def main_menu():
     user_choice = ""
 
-
     while user_choice != "3":
         print("1. Zaloguj się jako klient")
         print("2. Zaloguj się jako administrator")
@@ -109,8 +114,6 @@ def main_menu():
 
         else:
             print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
-
-
 
 
 if __name__ == "__main__":
