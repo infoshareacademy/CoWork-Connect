@@ -1,27 +1,29 @@
 import json
 
-def saving_clients_data(desk_name, date, user_hours_choice, name, surname, phone, email):
+def saving_clients_data(desk_name, user_beginning_date_str, user_end_date_str, name, surname, phone, email):
     try:
         with open('user_data.json', 'r') as file:
             data = json.load(file)
-            reservation_id = data[-1]["ID rezerwacji"] + 1 if data else 1
+            # Generowanie nowego ID rezerwacji
+            reservation_id = max([int(k) for k in data.keys()]) + 1 if data else 1
     except (FileNotFoundError, json.JSONDecodeError):
-        data = []
+        data = {}
         reservation_id = 1
-    new_entry = {
-        "ID rezerwacji": reservation_id,
+
+    # Dodawanie nowej rezerwacji do słownika
+    data[str(reservation_id)] = {
         "Biurko": desk_name,
-        "Data wynajmu": date,
-        "Długość wynajmu": user_hours_choice,
-        "Imię": name,
+        "Imie": name,
         "Nazwisko": surname,
         "Telefon": phone,
-        "Email": email
+        "Email": email,
+        "Wynajem od": user_beginning_date_str,
+        "Wynajem do": user_end_date_str
     }
-    data.append(new_entry)
 
     with open('user_data.json', 'w') as file:
-        json.dump(data, file, indent=4)
+        json.dump(data, file, indent=4, sort_keys=True)
+
     return reservation_id
 
 if __name__ == '__main__':
