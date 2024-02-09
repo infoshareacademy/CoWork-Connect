@@ -17,7 +17,7 @@ def customer_board():
 
             desks_instances = load_desks_from_file("desks.json")
 
-            print("Szczegółowe specyfikacje oraz cennik biurek:")
+            print("\n", "Szczegółowe specyfikacje oraz cennik biurek (lista zawiera wszystkie dostępne biurka):")
             for desk in desks_instances.values():
                 print(f" Numer {desk.name} - rodzaj: {desk.desk_type}, cena: {desk.price} PLN, status: {desk.status}")
             print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
