@@ -1,3 +1,4 @@
+from user_reservation import user_reservation_module
 def customer_board():
     user_choice = ""
 
@@ -13,6 +14,7 @@ def customer_board():
             print("3. DOSTĘPNOŚĆ BIUREK/STANOWISK")
         elif user_choice == "4":
             print("4. REZERWACJA BIURKA")
+            user_reservation_module()
         elif user_choice == "5":
             print("5. ANULOWANIE REZERWACJI")
         elif user_choice == "6":
@@ -26,7 +28,6 @@ def customer_board():
             print("8. WYJŚCIE Z APLIKACJI")
         else:
             print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
-
 
 def admin_board():
     user_choice = ""
@@ -53,7 +54,6 @@ def admin_board():
         elif user_choice != "8":
             print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
 
-
 def print_menu_customer():
     print("1. NASZA OFERTA")
     print("2. SZCZEGÓŁOWE SPECYFIKACJE ORAZ CENNIK USŁUG")
@@ -64,7 +64,6 @@ def print_menu_customer():
     print("7. REGULAMIN USŁUGI I OPCJE PŁATNOŚCI")
     print("8. WYJŚCIE Z APLIKACJI")
 
-
 def print_menu_admin():
     print("1. LISTA REZERWACJI I DANE SUMARYCZNE")
     print("2. DODWANIE BIURKA/STANOWISKA")
@@ -74,7 +73,6 @@ def print_menu_admin():
     print("6. EDYCJA DANYCH KONTAKTOWYCH")
     print("7. WYJŚCIE Z APLIKACJI/WYLOGOWANIE")
     print("8. WYJŚCIE Z APLIKACJI")
-
 
 def main_menu():
     user_choice = ""
@@ -100,8 +98,6 @@ def main_menu():
 
         else:
             print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
-
-
 
 
 if __name__ == "__main__":

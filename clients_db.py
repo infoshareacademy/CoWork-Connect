@@ -1,6 +1,6 @@
 import json
 
-def saving_clients_data(desk_name, user_beginning_date_str, user_end_date_str, name, surname, phone, email):
+def saving_clients_data(desk_name, user_beginning_date_str, user_end_date_str, name, surname, phone, email, total_value):
     try:
         with open('user_data.json', 'r') as file:
             data = json.load(file)
@@ -18,7 +18,8 @@ def saving_clients_data(desk_name, user_beginning_date_str, user_end_date_str, n
         "Telefon": phone,
         "Email": email,
         "Wynajem od": user_beginning_date_str,
-        "Wynajem do": user_end_date_str
+        "Wynajem do": user_end_date_str,
+        "Calkowita wartosc wynajmu": total_value
     }
 
     with open('user_data.json', 'w') as file:
