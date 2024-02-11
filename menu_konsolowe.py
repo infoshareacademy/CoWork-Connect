@@ -22,9 +22,11 @@ def show_admin_desks_view():
 
 def add_desk():
     desks_instances = load_desks_from_file("desks.json")
-
+    # Autmatyczne nadawanie indeksu
     idx = len(desks_instances.keys()) + 1
+    # Dodanie nazwy biurka
     name = input("Podaj nazwę biurka: ")
+    # Dodanie typu biurka
     desk_type = input("Podaj typ biurka: ")
 
     # Walidacja monitora
@@ -32,7 +34,9 @@ def add_desk():
 
     while True:
         try:
-            options_string = ", ".join(f"{key}. \"{value}\"" for key, value in monitor_options.items())
+            options_string = ", ".join(
+                f'{key}. "{value}"' for key, value in monitor_options.items()
+            )
             monitor_input = input(f"Czy biurko ma monitor? ({options_string}): ")
             monitor_choice = int(monitor_input)
 
@@ -63,10 +67,14 @@ def add_desk():
     status_options = ["czynne", "nieczynne", "inne"]
 
     # Walidacja statusu
-    status_options = {1: "czynne", 2: "zajęte",3: "inne"}
+    status_options = {1: "czynne", 2: "zajęte", 3: "inne"}
     while True:
-        status_options_string = ", ".join(f"{key}. / {value}" for key, value in status_options)
-        status = input(f"Podaj status biurka, wybierając odpowiednią opcję ({status_options_string})")
+        status_options_string = ", ".join(
+            f"{key}. / {value}" for key, value in status_options
+        )
+        status = input(
+            f"Podaj status biurka, wybierając odpowiednią opcję ({status_options_string})"
+        )
         if status in status_options:
             break
         else:
@@ -91,7 +99,9 @@ def delete_desk():
         return
 
     try:
-        del_desk_name = input("Podaj indeks biurka do usunięcia (lub wpisz -1, żeby anulować): ")
+        del_desk_name = input(
+            "Podaj indeks biurka do usunięcia (lub wpisz -1, żeby anulować): "
+        )
 
         if del_desk_name == "-1":
             print("Anulowano usunięcie.")
@@ -108,7 +118,6 @@ def delete_desk():
 
     except ValueError:
         print("Nieprawidłowe dane wejściowe. Podaj prawidłową nazwę biurka.")
-
 
 
 def customer_board():
