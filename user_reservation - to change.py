@@ -6,19 +6,18 @@ def user_reservation_module():
     print("Za chwilę zaprezentuję listę dostepnych biurek.")
 
     def beginning_date():
-        while True:
-            print("Od kiedy chcesz wynająć stanowisko?")
-            current_date = datetime.today().date()
-            input_beginning_date = input("Wprowadź datę w formacie YYYY-MM-DD: ")
-            try:
-                user_beginning_date = datetime.strptime(input_beginning_date, "%Y-%m-%d").date()
-                if user_beginning_date >= current_date:
-                    user_beginning_date_str = user_beginning_date.strftime("%Y-%m-%d")
-                    return user_beginning_date_str, user_beginning_date
-                else:
-                    print("Data powinna być późniejsza niż dzisiejsza. Spróbuj ponownie.")
-            except ValueError:
-                print("Wprowadź odpowiednią datę w formacie YYYY-MM-DD")
+        print("Od kiedy chcesz wynająć stanowisko?")
+        current_date = datetime.today().date()
+        input_beginning_date = input("Wprowadź datę w formacie YYYY-MM-DD: ")
+        try:
+            user_beginning_date = datetime.strptime(input_beginning_date, "%Y-%m-%d").date()
+            if user_beginning_date >= current_date:
+                user_beginning_date_str = user_beginning_date.strftime("%Y-%m-%d")
+                return user_beginning_date_str, user_beginning_date
+            else:
+                print("Data powinna być późniejsza niż dzisiejsza. Spróbuj ponownie.")
+        except ValueError:
+            print("Wprowadź odpowiednią datę w formacie YYYY-MM-DD")
     user_beginning_date_str, user_beginning_date = beginning_date()
 
 
