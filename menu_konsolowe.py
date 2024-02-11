@@ -1,3 +1,58 @@
+from desk import *
+import json
+
+
+def show_admin_desks_view():
+    print("Admin Desks View:")
+
+    try:
+        with open("desks.json", "r") as file:
+            desks_instances = json.load(file)
+
+            if not desks_instances:
+                print("Brak biurek do wyświetlenia.")
+                return
+
+            for name, desk_data in desks_instances.items():
+                print(f"{name}: {json.dumps(desk_data, indent=2)}")
+
+    except FileNotFoundError:
+        print("Plik desks.json nie istnieje. Brak biurek do wyświetlenia.")
+
+
+def delete_desk():
+    desks_instances = load_desks_from_file("desks.json")
+
+    print("Akturalne biurka:")
+    for desk in desks_instances.values():
+        print(f"Id: {desk.name}, {json.dumps(desk.to_dict(), indent=2)} ")
+
+    if not desks_instances:
+        print("Brak dostępnych biurek do usunięcia!")
+        return
+
+    try:
+        del_desk_name = input(
+            "Podaj indeks biurka do usunięcia (lub wpisz -1, żeby anulować): "
+        )
+
+        if del_desk_name == "-1":
+            print("Anulowano usunięcie.")
+            return
+
+        if del_desk_name in desks_instances:
+            desks_instances.pop(del_desk_name)
+            print(f"Usunięto biurko: {del_desk_name}")
+
+        else:
+            print("Nieprawidłowa nazwa biurka. Nie usunięto żadnego biurka.")
+
+        save_desks_to_file(desks_instances)
+
+    except ValueError:
+        print("Nieprawidłowe dane wejściowe. Podaj prawidłową nazwę biurka.")
+
+
 def customer_board():
     user_choice = ""
 
@@ -18,10 +73,12 @@ def customer_board():
         elif user_choice == "6":
             print("6. DANE KONTAKTOWE BIURA")
         elif user_choice == "7":
-            print("""
+            print(
+                """
             7. REGULAMIN USŁUGI I OPCJE PŁATNOŚCI
             nie mamy jeszcze regulaminu i opcji płatności, ale stworzymy tekst i wrzucimy
-                  """)
+                  """
+            )
         elif user_choice == "8":
             print("8. WYJŚCIE Z APLIKACJI")
         else:
@@ -37,10 +94,15 @@ def admin_board():
 
         if user_choice == "1":
             print("1. LISTA REZERWACJI I DANE SUMARYCZNE")
+            show_admin_desks_view()
+
         elif user_choice == "2":
             print("2. DODWANIE BIURKA/STANOWISKA")
+
         elif user_choice == "3":
             print("3. USUWANIE BIURKA/STANOWISKA")
+            delete_desk()
+
         elif user_choice == "4":
             print("4. ANULOWANIE REZERWACJI")
         elif user_choice == "5":
@@ -49,7 +111,8 @@ def admin_board():
             print("6. EDYCJA DANYCH KONTAKTOWYCH")
         elif user_choice == "7":
             print("7. ZAPISZ ZMIANY")
-            # save_tasks_to_file()
+            save_desks_to_file()
+
         elif user_choice != "8":
             print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
 
@@ -72,13 +135,12 @@ def print_menu_admin():
     print("4. ANULOWANIE REZERWACJI")
     print("5. EDYCJA REGULAMINU USŁUG")
     print("6. EDYCJA DANYCH KONTAKTOWYCH")
-    print("7. WYJŚCIE Z APLIKACJI/WYLOGOWANIE")
+    print("7. ZAPISZ ZMIANY")
     print("8. WYJŚCIE Z APLIKACJI")
 
 
 def main_menu():
     user_choice = ""
-
 
     while user_choice != "3":
         print("1. Zaloguj się jako klienta")
@@ -100,8 +162,6 @@ def main_menu():
 
         else:
             print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
-
-
 
 
 if __name__ == "__main__":

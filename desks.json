@@ -1,0 +1,202 @@
+{
+  "1": {
+    "desk_type": "1 osobowe bez monitora, trzy gniazdka",
+    "monitor": false,
+    "rozmiar": 1,
+    "price": 50,
+    "status": "czynne",
+    "name": "1"
+  },
+  "2": {
+    "desk_type": "1 osobowe bez monitora, trzy gniazdka",
+    "monitor": false,
+    "rozmiar": 1,
+    "price": 50,
+    "status": "czynne",
+    "name": "2"
+  },
+  "3": {
+    "desk_type": "1 osobowe bez monitora, trzy gniazdka",
+    "monitor": false,
+    "rozmiar": 1,
+    "price": 50,
+    "status": "czynne",
+    "name": "3"
+  },
+  "4": {
+    "desk_type": "1 osobowe bez monitora, trzy gniazdka",
+    "monitor": false,
+    "rozmiar": 1,
+    "price": 50,
+    "status": "czynne",
+    "name": "4"
+  },
+  "5": {
+    "desk_type": "1 osobowe bez monitora, trzy gniazdka",
+    "monitor": false,
+    "rozmiar": 1,
+    "price": 50,
+    "status": "czynne",
+    "name": "5"
+  },
+  "6": {
+    "desk_type": "1 osobowe z monitorem, trzy gniazdka",
+    "monitor": true,
+    "rozmiar": 1,
+    "price": 80,
+    "status": "czynne",
+    "name": "6"
+  },
+  "7": {
+    "desk_type": "1 osobowe z monitorem, trzy gniazdka",
+    "monitor": true,
+    "rozmiar": 1,
+    "price": 80,
+    "status": "czynne",
+    "name": "7"
+  },
+  "8": {
+    "desk_type": "1 osobowe z monitorem, trzy gniazdka",
+    "monitor": true,
+    "rozmiar": 1,
+    "price": 80,
+    "status": "czynne",
+    "name": "8"
+  },
+  "9": {
+    "desk_type": "1 osobowe z monitorem, trzy gniazdka",
+    "monitor": true,
+    "rozmiar": 1,
+    "price": 80,
+    "status": "czynne",
+    "name": "9"
+  },
+  "10": {
+    "desk_type": "1 osobowe z monitorem, trzy gniazdka",
+    "monitor": true,
+    "rozmiar": 1,
+    "price": 80,
+    "status": "czynne",
+    "name": "10"
+  },
+  "11": {
+    "desk_type": "4 osobowe bez monitor\u00f3w, dwana\u015bcie gniazdek",
+    "monitor": false,
+    "rozmiar": 4,
+    "price": 40,
+    "status": "czynne",
+    "name": "11"
+  },
+  "12": {
+    "desk_type": "4 osobowe bez monitor\u00f3w, dwana\u015bcie gniazdek",
+    "monitor": false,
+    "rozmiar": 4,
+    "price": 40,
+    "status": "czynne",
+    "name": "12"
+  },
+  "13": {
+    "desk_type": "4 osobowe bez monitor\u00f3w, dwana\u015bcie gniazdek",
+    "monitor": false,
+    "rozmiar": 4,
+    "price": 40,
+    "status": "czynne",
+    "name": "13"
+  },
+  "14": {
+    "desk_type": "4 osobowe bez monitor\u00f3w, dwana\u015bcie gniazdek",
+    "monitor": false,
+    "rozmiar": 4,
+    "price": 40,
+    "status": "czynne",
+    "name": "14"
+  },
+  "15": {
+    "desk_type": "4 osobowe bez monitor\u00f3w, dwana\u015bcie gniazdek",
+    "monitor": false,
+    "rozmiar": 4,
+    "price": 40,
+    "status": "czynne",
+    "name": "15"
+  },
+  "16": {
+    "desk_type": "4 osobowe z monitorami, dwana\u015bcie gniazdek",
+    "monitor": true,
+    "rozmiar": 4,
+    "price": 65,
+    "status": "czynne",
+    "name": "16"
+  },
+  "17": {
+    "desk_type": "4 osobowe z monitorami, dwana\u015bcie gniazdek",
+    "monitor": true,
+    "rozmiar": 4,
+    "price": 65,
+    "status": "czynne",
+    "name": "17"
+  },
+  "18": {
+    "desk_type": "4 osobowe z monitorami, dwana\u015bcie gniazdek",
+    "monitor": true,
+    "rozmiar": 4,
+    "price": 65,
+    "status": "czynne",
+    "name": "18"
+  },
+  "19": {
+    "desk_type": "4 osobowe z monitorami, dwana\u015bcie gniazdek",
+    "monitor": true,
+    "rozmiar": 4,
+    "price": 65,
+    "status": "czynne",
+    "name": "19"
+  },
+  "20": {
+    "desk_type": "4 osobowe z monitorami, dwana\u015bcie gniazdek",
+    "monitor": true,
+    "rozmiar": 4,
+    "price": 65,
+    "status": "czynne",
+    "name": "20"
+  },
+  "21": {
+    "desk_type": "10 osobowe bez monitor\u00f3w, trzydzie\u015bci gniazdek",
+    "monitor": false,
+    "rozmiar": 10,
+    "price": 25,
+    "status": "czynne",
+    "name": "21"
+  },
+  "22": {
+    "desk_type": "10 osobowe bez monitor\u00f3w, trzydzie\u015bci gniazdek",
+    "monitor": false,
+    "rozmiar": 10,
+    "price": 25,
+    "status": "czynne",
+    "name": "22"
+  },
+  "23": {
+    "desk_type": "10 osobowe z monitorami, trzydzie\u015bci gniazdek",
+    "monitor": true,
+    "rozmiar": 10,
+    "price": 40,
+    "status": "czynne",
+    "name": "23"
+  },
+  "24": {
+    "desk_type": "10 osobowe z monitorami, trzydzie\u015bci gniazdek",
+    "monitor": true,
+    "rozmiar": 10,
+    "price": 40,
+    "status": "czynne",
+    "name": "24"
+  },
+  "25": {
+    "desk_type": "10 osobowe bez monitor\u00f3w, trzydzie\u015bci gniazdek",
+    "monitor": false,
+    "rozmiar": 10,
+    "price": 25.0,
+    "status": "czynne",
+    "name": "25"
+  }
+}
