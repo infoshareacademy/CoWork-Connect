@@ -98,7 +98,6 @@ def admin_board():
 
         elif user_choice == "2":
             print("2. DODWANIE BIURKA/STANOWISKA")
-            AddDesk()
 
         elif user_choice == "3":
             print("3. USUWANIE BIURKA/STANOWISKA")
