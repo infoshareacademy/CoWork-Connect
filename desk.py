@@ -55,4 +55,3 @@ def save_desks_to_file(desks_instances):
             data[name] = desk.to_dict()
         json.dump(data, file, indent=2)
     print("Zapisano biurka do pliku.")
-

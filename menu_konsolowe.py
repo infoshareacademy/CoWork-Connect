@@ -1,3 +1,4 @@
+from class_reservation_with_cancel import *
 from desk import *
 import json
 
@@ -61,24 +62,39 @@ def customer_board():
         user_choice = input("Wybierz opcję wybierając odpowiednią cyfrę:")
 
         if user_choice == "1":
-            print("1. NASZA OFERTA")
+            with open('oferta_biura.json', 'r') as file:
+                offer = json.load(file)
+                for key, value in offer.items():
+                    print(value)
+            print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "2":
-            print("2. SZCZEGÓŁOWE SPECYFIKACJE ORAZ CENNIK USŁUG")
+
+            desks_instances = load_desks_from_file("desks.json")
+
+            print("\n", "Szczegółowe specyfikacje oraz cennik biurek (lista zawiera wszystkie dostępne biurka):")
+            for desk in desks_instances.values():
+                print(f" Numer {desk.name} - rodzaj: {desk.desk_type}, cena: {desk.price} PLN, status: {desk.status}")
+            print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "3":
             print("3. DOSTĘPNOŚĆ BIUREK/STANOWISK")
         elif user_choice == "4":
-            print("4. REZERWACJA BIURKA")
+            ReservationManager()
+            DeskManager()
+            ClientDataManager()
         elif user_choice == "5":
-            print("5. ANULOWANIE REZERWACJI")
+            ReservationCanceler.cancel_reservation()
         elif user_choice == "6":
-            print("6. DANE KONTAKTOWE BIURA")
+            with open('dane_kontaktowe.json', 'r') as file:
+                offer = json.load(file)
+                for key, value in offer.items():
+                    print(value)
+            print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "7":
-            print(
-                """
-            7. REGULAMIN USŁUGI I OPCJE PŁATNOŚCI
-            nie mamy jeszcze regulaminu i opcji płatności, ale stworzymy tekst i wrzucimy
-                  """
-            )
+            with open('regulamin_opcje_platnosci.json', 'r') as file:
+                offer = json.load(file)
+                for key, value in offer.items():
+                    print(value)
+            print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "8":
             print("8. WYJŚCIE Z APLIKACJI")
         else:
@@ -143,7 +159,7 @@ def main_menu():
     user_choice = ""
 
     while user_choice != "3":
-        print("1. Zaloguj się jako klienta")
+        print("1. Zaloguj się jako klient")
         print("2. Zaloguj się jako administratora ")
         print("3. WYJŚCIE Z APLIKACJI")
         user_choice = input("Wybierz panel do którego chcesz się zalogować: ")
