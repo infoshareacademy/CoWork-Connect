@@ -1,23 +1,6 @@
 from desk import *
+from desk_manager import DeskManager
 import json
-
-
-def show_admin_desks_view():
-    print("Admin Desks View:")
-
-    try:
-        with open("desks.json", "r") as file:
-            desks_instances = json.load(file)
-
-            if not desks_instances:
-                print("Brak biurek do wyświetlenia.")
-                return
-
-            for name, desk_data in desks_instances.items():
-                print(f"{name}: {json.dumps(desk_data, indent=2)}")
-
-    except FileNotFoundError:
-        print("Plik desks.json nie istnieje. Brak biurek do wyświetlenia.")
 
 
 def delete_desk():
@@ -87,6 +70,7 @@ def customer_board():
 
 def admin_board():
     user_choice = ""
+    desk_manager = DeskManager()
 
     while user_choice != "8":
         print_menu_admin()
@@ -94,14 +78,11 @@ def admin_board():
 
         if user_choice == "1":
             print("1. LISTA REZERWACJI I DANE SUMARYCZNE")
-            show_admin_desks_view()
+            desk_manager.show_all_desks()
 
         elif user_choice == "2":
             print("2. DODWANIE BIURKA/STANOWISKA")
-
-        elif user_choice == "3":
-            print("3. USUWANIE BIURKA/STANOWISKA")
-            delete_desk()
+            desk_manager.add_desk()
 
         elif user_choice == "4":
             print("4. ANULOWANIE REZERWACJI")
@@ -111,7 +92,6 @@ def admin_board():
             print("6. EDYCJA DANYCH KONTAKTOWYCH")
         elif user_choice == "7":
             print("7. ZAPISZ ZMIANY")
-            save_desks_to_file()
 
         elif user_choice != "8":
             print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
