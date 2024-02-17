@@ -1,5 +1,5 @@
 from desk import *
-from desk_manager import DeskManager
+from desk_manager import DeskAdder, DeskDeleter, DeskShow
 
 
 def customer_board():
@@ -43,16 +43,18 @@ def admin_board():
 
         if user_choice == "1":
             print("1. LISTA REZERWACJI I DANE SUMARYCZNE")
-            # desk_manager.show_all_desks()
+            desk_show = DeskShow()
+            desk_show.user_friendly_dict()
 
         elif user_choice == "2":
             print("2. DODWANIE BIURKA/STANOWISKA")
-            desk_manager = DeskManager()
+            desk_manager = DeskAdder()
             desk_manager.add_desk()
 
         elif user_choice == "3":
             print("3. USUWANIE BIURKA/STANOWISKA")
-            # desk_manager.add_desk()
+            desk_deleter = DeskDeleter()
+            desk_deleter.delete_desk()
 
         elif user_choice == "4":
             print("4. ANULOWANIE REZERWACJI")
