@@ -39,7 +39,7 @@ def admin_board():
 
     while user_choice != "8":
         print_menu_admin()
-        user_choice = input("Wybierz opcję wybierając odpowiednią cyfrę:")
+        user_choice = input("Wybierz opcję wybierając odpowiednią cyfrę: ")
 
         if user_choice == "1":
             print("1. LISTA REZERWACJI I DANE SUMARYCZNE")
