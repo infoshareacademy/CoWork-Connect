@@ -24,11 +24,8 @@ class Desks:
             "name": self.name,
         }
 
-
-def user_friendly_dict():
-    desks_instances = load_desks_from_file("desks.json")
-    for desk in desks_instances.values():
-        return f"Id: {desk.idx}. {desk.name} typ biurka: {desk.desk_type}, cena: {desk.price}, status rezerwacji: {desk.status}"
+    def user_friendly_dict(self):
+        return f"Id: {self.idx}. {self.name} typ biurka: {self.desk_type}, cena: {self.price}, status rezerwacji: {self.status}"
 
 
 # Funkcje dodatkowe wywoływane przez funkcje w pliku menu konsolowe

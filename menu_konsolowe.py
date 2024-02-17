@@ -44,7 +44,7 @@ def admin_board():
         if user_choice == "1":
             print("1. LISTA REZERWACJI I DANE SUMARYCZNE")
             desk_show = DeskShow()
-            desk_show.user_friendly_dict()
+            desk_show.show_all_desks()
 
         elif user_choice == "2":
             print("2. DODWANIE BIURKA/STANOWISKA")
