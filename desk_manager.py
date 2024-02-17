@@ -2,7 +2,7 @@ from desk import load_desks_from_file, Desks, save_desks_to_file
 import json
 
 
-class DeskManager:
+class DeskAdder:
 
     def __init__(self):
         self.desks_instances = load_desks_from_file("desks.json")
@@ -81,14 +81,20 @@ class DeskManager:
         print("Dodano biurko!")
         save_desks_to_file(self.desks_instances)
 
-    def delete_desk():
-        desks_instances = load_desks_from_file("desks.json")
 
-        print("Akturalne biurka:")
-        for desk in desks_instances.values():
-            print(f"Id: {desk.name}, {json.dumps(desk.to_dict(), indent=2)} ")
+class DeskDeleter:
+    def __init__(self):
+        self.desks_instances = load_desks_from_file("desks.json")
 
-        if not desks_instances:
+    def show_current_desks(self):
+        print("Aktualne biurka:")
+        for desk in self.desks_instances.values():
+            print(f"Id: {desk.name}, {json.dumps(desk.to_dict(), indent=2)}")
+
+    def delete_desk(self):
+        self.show_current_desks()
+
+        if not self.desks_instances:
             print("Brak dostępnych biurek do usunięcia!")
             return
 
@@ -101,17 +107,21 @@ class DeskManager:
                 print("Anulowano usunięcie.")
                 return
 
-            if del_desk_name in desks_instances:
-                desks_instances.pop(del_desk_name)
+            if del_desk_name in self.desks_instances:
+                self.desks_instances.pop(del_desk_name)
                 print(f"Usunięto biurko: {del_desk_name}")
-
             else:
                 print("Nieprawidłowa nazwa biurka. Nie usunięto żadnego biurka.")
 
-            save_desks_to_file(desks_instances)
+            save_desks_to_file(self.desks_instances)
 
         except ValueError:
             print("Nieprawidłowe dane wejściowe. Podaj prawidłową nazwę biurka.")
+
+
+class DeskShow:
+    def __init__(self):
+        self.desks_instances = load_desks_from_file("desks.json")
 
     def show_all_desks(self):
         for desk in self.desks_instances.values():

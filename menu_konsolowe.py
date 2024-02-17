@@ -1,39 +1,5 @@
 from desk import *
 from desk_manager import DeskManager
-import json
-
-
-def delete_desk():
-    desks_instances = load_desks_from_file("desks.json")
-
-    print("Akturalne biurka:")
-    for desk in desks_instances.values():
-        print(f"Id: {desk.name}, {json.dumps(desk.to_dict(), indent=2)} ")
-
-    if not desks_instances:
-        print("Brak dostępnych biurek do usunięcia!")
-        return
-
-    try:
-        del_desk_name = input(
-            "Podaj indeks biurka do usunięcia (lub wpisz -1, żeby anulować): "
-        )
-
-        if del_desk_name == "-1":
-            print("Anulowano usunięcie.")
-            return
-
-        if del_desk_name in desks_instances:
-            desks_instances.pop(del_desk_name)
-            print(f"Usunięto biurko: {del_desk_name}")
-
-        else:
-            print("Nieprawidłowa nazwa biurka. Nie usunięto żadnego biurka.")
-
-        save_desks_to_file(desks_instances)
-
-    except ValueError:
-        print("Nieprawidłowe dane wejściowe. Podaj prawidłową nazwę biurka.")
 
 
 def customer_board():
@@ -70,7 +36,6 @@ def customer_board():
 
 def admin_board():
     user_choice = ""
-    desk_manager = DeskManager()
 
     while user_choice != "8":
         print_menu_admin()
@@ -78,11 +43,16 @@ def admin_board():
 
         if user_choice == "1":
             print("1. LISTA REZERWACJI I DANE SUMARYCZNE")
-            desk_manager.show_all_desks()
+            # desk_manager.show_all_desks()
 
         elif user_choice == "2":
             print("2. DODWANIE BIURKA/STANOWISKA")
+            desk_manager = DeskManager()
             desk_manager.add_desk()
+
+        elif user_choice == "3":
+            print("3. USUWANIE BIURKA/STANOWISKA")
+            # desk_manager.add_desk()
 
         elif user_choice == "4":
             print("4. ANULOWANIE REZERWACJI")
