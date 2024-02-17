@@ -1,5 +1,5 @@
 from desk import *
-from desk_manager import DeskAdder, DeskDeleter, DeskShow
+from desk_manager import DeskAdder, DeskDeleter
 
 
 def customer_board():
