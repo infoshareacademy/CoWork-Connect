@@ -16,6 +16,11 @@ def customer_board():
                 for key, value in offer.items():
                     print(value)
             print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
+            with open('oferta_biura.json', 'r') as file:
+                offer = json.load(file)
+                for key, value in offer.items():
+                    print(value)
+            print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "2":
 
             desks_instances = load_desks_from_file("desks.json")
@@ -28,6 +33,13 @@ def customer_board():
                 print(
                     f" Numer {desk.name} - rodzaj: {desk.desk_type}, cena: {desk.price} PLN, status: {desk.status}"
                 )
+            print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
+
+            desks_instances = load_desks_from_file("desks.json")
+
+            print("\n", "Szczegółowe specyfikacje oraz cennik biurek (lista zawiera wszystkie dostępne biurka):")
+            for desk in desks_instances.values():
+                print(f" Numer {desk.name} - rodzaj: {desk.desk_type}, cena: {desk.price} PLN, status: {desk.status}")
             print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "3":
             print("3. DOSTĘPNOŚĆ BIUREK/STANOWISK")
@@ -42,8 +54,18 @@ def customer_board():
                 for key, value in offer.items():
                     print(value)
             print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
+            with open('dane_kontaktowe.json', 'r') as file:
+                offer = json.load(file)
+                for key, value in offer.items():
+                    print(value)
+            print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "7":
             with open("regulamin_opcje_platnosci.json", "r") as file:
+                offer = json.load(file)
+                for key, value in offer.items():
+                    print(value)
+            print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
+            with open('regulamin_opcje_platnosci.json', 'r') as file:
                 offer = json.load(file)
                 for key, value in offer.items():
                     print(value)
@@ -106,7 +128,7 @@ def main_menu():
 
     while user_choice != "3":
         print("1. Zaloguj się jako klient")
-        print("2. Zaloguj się jako administratora ")
+        print("2. Zaloguj się jako administrator ")
         print("3. WYJŚCIE Z APLIKACJI")
         user_choice = input("Wybierz panel do którego chcesz się zalogować: ")
 
