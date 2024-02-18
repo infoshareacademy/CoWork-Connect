@@ -33,7 +33,6 @@ def customer_board():
             print("3. DOSTĘPNOŚĆ BIUREK/STANOWISK")
         elif user_choice == "4":
             ReservationManager()
-            DeskManager()
             ClientDataManager()
         elif user_choice == "5":
             ReservationCanceler.cancel_reservation()
