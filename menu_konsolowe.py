@@ -58,7 +58,7 @@ def customer_board():
 def admin_board():
     user_choice = ""
 
-    while user_choice != "8":
+    while user_choice != "5":
         print_menu_admin()
         user_choice = input("Wybierz opcję wybierając odpowiednią cyfrę: ")
 
@@ -79,7 +79,7 @@ def admin_board():
             print("4. ANULOWANIE REZERWACJI")
             ReservationCanceler.cancel_reservation()
 
-        elif user_choice != "8":
+        elif user_choice != "5":
             print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
 
 
@@ -99,7 +99,7 @@ def print_menu_admin():
     print("2. DODWANIE BIURKA/STANOWISKA")
     print("3. USUWANIE BIURKA/STANOWISKA")
     print("4. ANULOWANIE REZERWACJI")
-    print("8. WYJŚCIE Z APLIKACJI")
+    print("5. WYJŚCIE Z APLIKACJI")
 
 
 def main_menu():
