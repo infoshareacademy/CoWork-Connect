@@ -11,7 +11,7 @@ def customer_board():
         user_choice = input("Wybierz opcję wybierając odpowiednią cyfrę:")
 
         if user_choice == "1":
-            with open('oferta_biura.json', 'r') as file:
+            with open("oferta_biura.json", "r") as file:
                 offer = json.load(file)
                 for key, value in offer.items():
                     print(value)
@@ -20,9 +20,14 @@ def customer_board():
 
             desks_instances = load_desks_from_file("desks.json")
 
-            print("\n", "Szczegółowe specyfikacje oraz cennik biurek (lista zawiera wszystkie dostępne biurka):")
+            print(
+                "\n",
+                "Szczegółowe specyfikacje oraz cennik biurek (lista zawiera wszystkie dostępne biurka):",
+            )
             for desk in desks_instances.values():
-                print(f" Numer {desk.name} - rodzaj: {desk.desk_type}, cena: {desk.price} PLN, status: {desk.status}")
+                print(
+                    f" Numer {desk.name} - rodzaj: {desk.desk_type}, cena: {desk.price} PLN, status: {desk.status}"
+                )
             print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "3":
             print("3. DOSTĘPNOŚĆ BIUREK/STANOWISK")
@@ -33,13 +38,13 @@ def customer_board():
         elif user_choice == "5":
             ReservationCanceler.cancel_reservation()
         elif user_choice == "6":
-            with open('dane_kontaktowe.json', 'r') as file:
+            with open("dane_kontaktowe.json", "r") as file:
                 offer = json.load(file)
                 for key, value in offer.items():
                     print(value)
             print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "7":
-            with open('regulamin_opcje_platnosci.json', 'r') as file:
+            with open("regulamin_opcje_platnosci.json", "r") as file:
                 offer = json.load(file)
                 for key, value in offer.items():
                     print(value)
@@ -72,12 +77,7 @@ def admin_board():
 
         elif user_choice == "4":
             print("4. ANULOWANIE REZERWACJI")
-        elif user_choice == "5":
-            print("5. EDYCJA REGULAMINU USŁUG")
-        elif user_choice == "6":
-            print("6. EDYCJA DANYCH KONTAKTOWYCH")
-        elif user_choice == "7":
-            print("7. ZAPISZ ZMIANY")
+            ReservationCanceler.cancel_reservation()
 
         elif user_choice != "8":
             print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
