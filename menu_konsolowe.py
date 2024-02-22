@@ -99,9 +99,6 @@ def print_menu_admin():
     print("2. DODWANIE BIURKA/STANOWISKA")
     print("3. USUWANIE BIURKA/STANOWISKA")
     print("4. ANULOWANIE REZERWACJI")
-    print("5. EDYCJA REGULAMINU USŁUG")
-    print("6. EDYCJA DANYCH KONTAKTOWYCH")
-    print("7. ZAPISZ ZMIANY")
     print("8. WYJŚCIE Z APLIKACJI")
 
 
