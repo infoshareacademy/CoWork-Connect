@@ -111,6 +111,7 @@ class ReservationManager:
         self.user_desk_choice = input("Wprowadź numer wybranego przez siebie biurka: ")
         return self.user_desk_choice
 
+
     def choosing_desk_from_displayed(self, user_desk_choice, days_counter):
         desks_instances = load_desks_from_file(filename="desks.json")
         for desk_name, desk_info in desks_instances.items():
@@ -124,7 +125,24 @@ class ReservationManager:
 
     def value_calculating(self, total_cost):
         total_value = total_cost
-        print(f"Wybrałeś biurko nr:, całkowita cena wynajmu wyniesie {total_value} PLN.")
+        print(f"Całkowita cena wynajmu wyniesie {total_value} PLN.")
+        return total_value
+
+class User_Input:
+    def choosing_desk_from_displayed(self, user_desk_choice, days_counter):
+        desks_instances = load_desks_from_file(filename="desks.json")
+        for desk_name, desk_info in desks_instances.items():
+            if desk_name == user_desk_choice:
+                print(f"Numer biurka: {desk_name}:")
+                print(f"Specyfikacja: {desk_info.desk_type}, "
+                      f"\nCena za jedno stanowisko: {desk_info.price} PLN")
+                self.total_cost = desk_info.price * desk_info.size * days_counter
+                print("")
+                return self.total_cost, desk_name, desk_info.desk_type
+
+    def value_calculating(self, total_cost):
+        total_value = total_cost
+        print(f"Całkowita cena wynajmu wyniesie {total_value} PLN.")
         return total_value
 
 

@@ -1,4 +1,5 @@
 from class_reservation_with_cancel import *
+from checking_availiability import *
 from desk import *
 from desk_manager import DeskAdder, DeskDeleter
 
@@ -43,6 +44,7 @@ def customer_board():
             print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "3":
             print("3. DOSTĘPNOŚĆ BIUREK/STANOWISK")
+            DeskAvailabilityChecker()
         elif user_choice == "4":
             ReservationManager()
             ClientDataManager()
