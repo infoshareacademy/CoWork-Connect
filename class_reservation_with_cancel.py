@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+from desk import load_desks_from_file
 
 
 class ReservationManager:
@@ -8,15 +9,10 @@ class ReservationManager:
         self.user_end_date_str, self.user_end_date, self.days_counter = self.end_date(self.user_beginning_date)
         self.user_choice_size = self.size_choosing()
         self.user_choice_display = self.display_choosing()
-        self.size, self.display = DeskManager().presenting_avaliability(self.user_choice_size, self.user_choice_display)
-        self.reserved_desks = DeskManager().checking_availiability_by_date(self.user_beginning_date_str,
-                                                                           self.user_end_date_str)
-        DeskManager().choosing_desk_v2(self.reserved_desks, self.size, self.display)
-        self.user_desk_choice = input("Wprowadź numer wybranego przez siebie biurka: ")
-        self.desk_price, self.desk_name, self.desk_type = DeskManager().choosing_desk_from_displayed(
-            self.user_desk_choice)
-        self.total_value = DeskManager().value_calculating(self.desk_price, self.days_counter,
-                                                           int(self.user_choice_size), self.desk_name)
+        self.reserved_desks = self.checking_availiability_by_date(self.user_beginning_date_str, self.user_end_date_str, filename='user_data.json')
+        self.showing_desk(self.reserved_desks, self.user_choice_size, self.user_choice_display)
+        self.total_cost, self.desk_name, self.desk_type = self.choosing_desk_from_displayed(self.user_desk_choice, self.days_counter)
+        self.total_value = self.value_calculating(self.total_cost)
         ClientDataManager().confirming_imputed_data(self.desk_name, self.desk_type, self.user_beginning_date_str,
                                                     self.user_end_date_str, self.total_value)
 
@@ -27,113 +23,57 @@ class ReservationManager:
         try:
             user_beginning_date = datetime.strptime(input_beginning_date, "%Y-%m-%d").date()
             if user_beginning_date >= current_date:
-                user_beginning_date_str = user_beginning_date.strftime("%Y-%m-%d")
-                return user_beginning_date_str, user_beginning_date
+                self.user_beginning_date_str = user_beginning_date.strftime("%Y-%m-%d")
+                return self.user_beginning_date_str, user_beginning_date
             else:
                 print("Data powinna być późniejsza niż dzisiejsza. Spróbuj ponownie.")
         except ValueError:
             print("Wprowadź odpowiednią datę w formacie YYYY-MM-DD")
+        return self.beginning_date()
 
     def end_date(self, user_beginning_date):
-        while True:
-            print("Do kiedy chcesz wynająć stanowisko (wprowadzony dzień włącznie)?")
-            input_end_date = input("Wprowadź datę w formacie YYYY-MM-DD: ")
-            try:
-                user_end_date = datetime.strptime(input_end_date, "%Y-%m-%d").date()
-                if user_end_date >= user_beginning_date:
-                    user_end_date_str = user_end_date.strftime("%Y-%m-%d")
-                    counter = user_end_date - user_beginning_date
-                    days_counter = counter.days + 1
-                    print(f"Wybrano biurko w przedziale czasowym od {user_beginning_date} do {user_end_date}.")
-                    print(f"Całkowita liczba dni wynosi: {days_counter}")
-                    return user_end_date_str, user_end_date, days_counter
-                else:
-                    print("Data powinna być późniejsza niż data początkowa. Spróbuj ponownie.")
-            except ValueError:
-                print("Wprowadź odpowiednią datę w formacie YYYY-MM-DD")
+        print("Do kiedy chcesz wynająć stanowisko (wprowadzony dzień włącznie)?")
+        input_end_date = input("Wprowadź datę w formacie YYYY-MM-DD: ")
+        try:
+            user_end_date = datetime.strptime(input_end_date, "%Y-%m-%d").date()
+            if user_end_date >= user_beginning_date:
+                self.user_end_date_str = user_end_date.strftime("%Y-%m-%d")
+                counter = user_end_date - user_beginning_date
+                self.days_counter = counter.days + 1
+                print(f"Wybrano biurko w przedziale czasowym od {user_beginning_date} do {user_end_date}.")
+                print(f"Całkowita liczba dni wynosi: {self.days_counter}")
+                return self.user_end_date_str, user_end_date, self.days_counter
+            else:
+                print("Data powinna być późniejsza niż data początkowa. Spróbuj ponownie.")
+        except ValueError:
+            print("Wprowadź odpowiednią datę w formacie YYYY-MM-DD")
+        return self.end_date(user_beginning_date)
 
     def size_choosing(self):
         print("Jakie biurko Cię interesuje?: ")
         print("Biurko 1-osobowe - wprowadź cyfrę 1")
         print("Biurko 4-osobowe - wprowadź cyfrę 4")
         print("Biurko 10-osobowe - wprowadź cyfrę 10")
-
-        while True:
-            user_choice_size = input("Wprowadź swój wybór: ")
-            if user_choice_size.isdigit():
-                if int(user_choice_size) == 1:
-                    print(f"Twój wybór to biurko {user_choice_size}-osobowe.")
-                    return user_choice_size
-                elif int(user_choice_size) == 4:
-                    print(f"Twój wybór to biurko {user_choice_size}-osobowe.")
-                    return user_choice_size
-                elif int(user_choice_size) == 10:
-                    print(f"Twój wybór to biurko {user_choice_size}-osobowe.")
-                    return user_choice_size
-                else:
-                    print("Wprowadzono niewłaściwą wartość, podaj wartość cyfrą: 1, 4 lub 10.")
-            else:
-                print("Wprowadzono niewłaściwą wartość, podaj wartość cyfrą: 1, 4 lub 10.")
-
-        user_choice_size
+        self.user_choice_size = input("Wprowadź swój wybór: ")
+        if self.user_choice_size in ["1", "4", "10"]:
+            return self.user_choice_size
+        else:
+            print("Wprowadzono niewłaściwą wartość, podaj wartość cyfrą: 1, 4 lub 10.")
+        return self.size_choosing()
 
     def display_choosing(self):
         print("Czy interesuje Cię biurko z monitorem czy bez?")
         print("Biurko z monitorem - wprowadź cyfrę 1")
-        print("Biurko bez monitora - wprowadź cyfrę 2")
-        while True:
-            user_choice_display = input("Wprowadź swój wybór: ")
-            if user_choice_display.isdigit():
-                if int(user_choice_display) == 1:
-                    return user_choice_display
-                elif int(user_choice_display) == 2:
-                    return user_choice_display
-                else:
-                    print("Wprowadzono niewłaściwą wartość, podaj 1 lub 2.")
-            else:
-                print("Wprowadzono niewłaściwą wartość, podaj wartość 1 lub 2.")
+        print("Biurko bez monitora - wprowadź cyfrę 0")
+        self.user_choice_display = input("Wprowadź swój wybór: ")
+        if self.user_choice_display in ["0", "1"]:
+            return self.user_choice_display
+        else:
+            print("Wprowadzono niewłaściwą wartość, podaj wartość 0 lub 1.")
+        return self.display_choosing()
 
-
-class DeskManager:
-    def presenting_avaliability(self, user_choice_size, user_choice_display):
-        if int(user_choice_size) == 1 and int(user_choice_display) == 1:
-            print("Prezentuję ofertę dostępnych biurek 1-osobowych z monitorem")
-            rozmiar = 1
-            monitor = True
-            return rozmiar, monitor
-
-        elif int(user_choice_size) == 1 and int(user_choice_display) == 2:
-            print("Prezentuję ofertę dostępnych biurek 1-osobowych bez monitora")
-            rozmiar = 1
-            monitor = False
-            return rozmiar, monitor
-
-        elif int(user_choice_size) == 4 and int(user_choice_display) == 1:
-            print("Prezentuję ofertę dostępnych biurek 4-osobowych z monitorem")
-            rozmiar = 4
-            monitor = True
-            return rozmiar, monitor
-
-        elif int(user_choice_size) == 4 and int(user_choice_display) == 2:
-            print("Prezentuję ofertę dostępnych biurek 4-osobowych bez monitora")
-            rozmiar = 4
-            monitor = False
-            return rozmiar, monitor
-
-        elif int(user_choice_size) == 10 and int(user_choice_display) == 1:
-            print("Prezentuję ofertę dostępnych biurek 10-osobowych z monitorem")
-            rozmiar = 10
-            monitor = True
-            return rozmiar, monitor
-
-        elif int(self.user_choice_size) == 10 and int(self.user_choice_display) == 2:
-            print("Prezentuję ofertę dostępnych biurek 10-osobowych bez monitora")
-            rozmiar = 10
-            monitor = False
-            return rozmiar, monitor
-
-    def checking_availiability_by_date(self, user_beginning_date_str, user_end_date_str):
-        with open("user_data.json", 'r') as file:
+    def checking_availiability_by_date(self, user_beginning_date_str, user_end_date_str, filename='user_data.json'):
+        with open(filename, 'r') as file:
             data = json.load(file)
 
         user_beginning_date = datetime.strptime(user_beginning_date_str, "%Y-%m-%d")
@@ -147,46 +87,44 @@ class DeskManager:
 
             if not (user_end_date <= reservation_start or user_beginning_date >= reservation_end):
                 reserved_desks.append(reservation_spec['Biurko'])
-
         return reserved_desks
 
-    def choosing_desk_v2(self, exclude_desk_ids, size, display):
-        with open('desks.json', 'r') as file:
-            data = json.load(file)
 
-        if exclude_desk_ids is None:
-            exclude_desk_ids = []
+    def showing_desk(self, reserved_desks, user_choice_size, user_choice_display):
+        desks_instances = load_desks_from_file(filename="desks.json")
 
-        for desk_name, desk_info in data.items():
-            if desk_name not in exclude_desk_ids and (
-                    size == desk_info['rozmiar'] and display == desk_info['monitor']):
-                print(f"Numer biurka: {desk_name}:")
-                print(f"Specyfikacja: {desk_info['desk_type']}, "
-                      f"\nCena za jedno stanowisko: {desk_info['price']} PLN")
-                if desk_info['rozmiar'] > 1:
-                    print(f"Całkowita cena wynajmu biurka: {desk_info['price'] * desk_info['rozmiar']}")
+        if reserved_desks is None:
+            reserved_desks = []
+
+        for idx, desk_info in desks_instances.items():
+            if idx not in reserved_desks and (int(self.user_choice_size) == desk_info.size and int(
+                    self.user_choice_display) == desk_info.monitor):
+                print(f"Numer biurka: {idx}:")
+                print(f"Specyfikacja: {desk_info.desk_type}, "
+                      f"\nCena za jedno stanowisko: {desk_info.price} PLN")
+                if desk_info.size > 1:
+                    print(f"Całkowita cena wynajmu biurka (za 1 dzień): {desk_info.price * desk_info.size}")
                 print("")
             else:
                 continue
+        print("Oto lista dostępnych biurek.")
+        self.user_desk_choice = input("Wprowadź numer wybranego przez siebie biurka: ")
+        return self.user_desk_choice
 
-        print("Powyżej znajduje się lista dostępnych biurek.")
+    def choosing_desk_from_displayed(self, user_desk_choice, days_counter):
+        desks_instances = load_desks_from_file(filename="desks.json")
+        for desk_name, desk_info in desks_instances.items():
+            if desk_name == user_desk_choice:
+                print(f"Numer biurka: {desk_name}:")
+                print(f"Specyfikacja: {desk_info.desk_type}, "
+                      f"\nCena za jedno stanowisko: {desk_info.price} PLN")
+                self.total_cost = desk_info.price * desk_info.size * days_counter
+                print("")
+                return self.total_cost, desk_name, desk_info.desk_type
 
-    def choosing_desk_from_displayed(self, user_desk_choice):
-        with open('desks.json', 'r') as file:
-            data = json.load(file)
-
-        user_desk_choice = str(user_desk_choice)
-
-        for desk_name, desk_info in data.items():
-            if user_desk_choice == desk_name:
-                print(f'Wybrano biurko o numerze: {desk_name}')
-                print(f'Specyfikacja: {desk_info["desk_type"]}')
-                print(f'Cena: {desk_info["price"]} PLN za 1 miejsce')
-                return int(desk_info["price"]), desk_name, (desk_info["desk_type"])
-
-    def value_calculating(self, desk_price, days_counter, size, desk_name):
-        total_value = desk_price * size * days_counter
-        print(f"Wybrałeś biurko nr: {desk_name}, całkowita cena wynajmu wyniesie {total_value} PLN.")
+    def value_calculating(self, total_cost):
+        total_value = total_cost
+        print(f"Całkowita cena wynajmu wyniesie {total_value} PLN.")
         return total_value
 
 
@@ -344,7 +282,6 @@ class ReservationSystem:
 
             if choice == "1":
                 ReservationManager()
-                DeskManager()
                 ClientDataManager()
             elif choice == "2":
                 ReservationCanceler.cancel_reservation()
