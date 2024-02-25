@@ -53,7 +53,7 @@ def customer_board():
         elif user_choice == "8":
             print("8. WYJŚCIE Z APLIKACJI")
         else:
-            print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
+            print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór.")
 
 
 def admin_board():
