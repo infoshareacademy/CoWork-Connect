@@ -1,6 +1,7 @@
 from class_reservation_with_cancel import *
 from desk import *
 from desk_manager import DeskAdder, DeskDeleter
+from checking_availiability import *
 
 
 def customer_board():
@@ -8,7 +9,7 @@ def customer_board():
 
     while user_choice != "8":
         print_menu_customer()
-        user_choice = input("Wybierz opcję wybierając odpowiednią cyfrę:")
+        user_choice = input("Wybierz opcję wybierając odpowiednią cyfrę: ")
 
         if user_choice == "1":
             with open("oferta_biura.json", "r") as file:
@@ -31,9 +32,9 @@ def customer_board():
             print(input("POWRÓT DO MENU KLIENTA - NACIŚNIJ ENTER"))
         elif user_choice == "3":
             print("3. DOSTĘPNOŚĆ BIUREK/STANOWISK")
+            DeskAvailabilityChecker()
         elif user_choice == "4":
             ReservationManager()
-            DeskManager()
             ClientDataManager()
         elif user_choice == "5":
             ReservationCanceler.cancel_reservation()
@@ -52,7 +53,7 @@ def customer_board():
         elif user_choice == "8":
             print("8. WYJŚCIE Z APLIKACJI")
         else:
-            print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
+            print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór.")
 
 
 def admin_board():
@@ -107,7 +108,7 @@ def main_menu():
 
     while user_choice != "3":
         print("1. Zaloguj się jako klient")
-        print("2. Zaloguj się jako administratora ")
+        print("2. Zaloguj się jako administrator")
         print("3. WYJŚCIE Z APLIKACJI")
         user_choice = input("Wybierz panel do którego chcesz się zalogować: ")
 
