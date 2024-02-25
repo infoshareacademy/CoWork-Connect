@@ -65,6 +65,7 @@ def admin_board():
 
         if user_choice == "1":
             print("1. LISTA REZERWACJI I DANE SUMARYCZNE")
+            print_user_data('user_data.json')
 
         elif user_choice == "2":
             print("2. DODWANIE BIURKA/STANOWISKA")
@@ -127,6 +128,14 @@ def main_menu():
         else:
             print(f"Przepraszam, wybrałeś {user_choice}, nie jest to poprawny wybór")
 
+def print_user_data(filename):
+    with open(filename, 'r') as file:
+        user_data = json.load(file)
+    for user_id, details in user_data.items():
+        print(f"ID użytkownika: {user_id}")
+        for key, value in details.items():
+            print(f"{key}: {value}")
+        print()
 
 if __name__ == "__main__":
     main_menu()
