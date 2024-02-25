@@ -120,5 +120,16 @@
         "Wynajem od": "2024-02-17",
         "Wynajem do": "2024-03-03",
         "Calkowita wartosc wynajmu": 1280
+    },
+    "13": {
+        "Imie": "Anna",
+        "Nazwisko": "Jantar",
+        "Telefon": "111222333",
+        "Email": "asdsd@wp.pl",
+        "Biurko": "10",
+        "Specyfikacja": "1 osobowe z monitorem, trzy gniazdka",
+        "Wynajem od": "2025-01-01",
+        "Wynajem do": "2025-01-10",
+        "Calkowita wartosc wynajmu": 800
     }
 }
