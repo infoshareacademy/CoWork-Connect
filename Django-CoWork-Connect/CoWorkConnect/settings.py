@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'CoApp.apps.CoAppConfig',
+    'register.apps.RegisterConfig'
 ]
 
 MIDDLEWARE = [
