@@ -1,0 +1,12 @@
+{% extends 'coapp/base.html' %}
+
+{% block content %}
+<h2>DOSTĘPNOŚĆ BIUREK I CENNIK</h2>
+<div>
+    <ul>
+    {% for desk in desks %}
+        <li>{{ desk.name }} - Typ: {{ desk.desk_type }}, Cena: {{ desk.price }} zł/dzień, Status: {{ desk.status }}</li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}
