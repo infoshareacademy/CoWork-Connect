@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from .models import Oferta
+
 
 # Create your views here.
 def home(response):
@@ -18,3 +20,5 @@ def regulations(response):
     return render(response, "coapp/regulations.html", {})
 def contact(response):
     return render(response, "coapp/contact.html", {})
+def offer(request):
+    return render(request, "coapp/offer.html", {})
