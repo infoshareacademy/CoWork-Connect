@@ -62,9 +62,10 @@
         <button class="dropdown-btn">MENU KLIENTA
             <i class="fa fa-caret-down"></i>
         </button>
-        <div class="dropdown-container">
+         <div class="dropdown-container">
             <a href="#">NASZA OFERTA</a>
             <a href="/desks/">DOSTĘPNOŚĆ BIUREK I CENNIK</a>
+            <a href="/reservation">REZERWACJA BIUREK</a>
             <a href="{% url 'register' %}">REJESTRACJA UŻYTKOWNIKA</a>
             <a href="{% url 'login' %}">Login</a>
         </div>
@@ -103,6 +104,13 @@
                 }
             });
         }
+    </script>
+    <script>
+    $(function() {
+        $(".datepicker").datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+    });
     </script>
 </body>
 </html>
