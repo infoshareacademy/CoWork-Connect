@@ -1,0 +1,84 @@
+{
+  "1": {
+    "name": "1",
+    "monitor/stanowisko": 1,
+    "rozmiar": 1,
+    "ilość gniazdek": 3,
+    "price": 50,
+    "status": "czynne"
+  },
+  "2": {
+    "name": "2",
+    "monitor/stanowisko": 1,
+    "rozmiar": 1,
+    "ilość gniazdek": 3,
+    "price": 50,
+    "status": "czynne"
+  },
+
+  "3": {
+    "name": "3",
+    "monitor/stanowisko": 2,
+    "rozmiar": 1,
+    "ilość gniazdek": 3,
+    "price": 80,
+    "status": "czynne"
+  },
+  "4": {
+    "name": "4",
+    "monitor/stanowisko": 2,
+    "rozmiar": 1,
+    "ilość gniazdek": 3,
+    "price": 80,
+    "status": "czynne"
+  },
+
+  "5": {
+    "name": "5",
+    "monitor/stanowisko": 1,
+    "rozmiar": 4,
+    "ilość gniazdek": 12,
+    "price": 40,
+    "status": "czynne"
+  },
+  "6": {
+    "name": "6",
+    "monitor/stanowisko": 1,
+    "rozmiar": 4,
+    "ilość gniazdek": 12,
+    "price": 40,
+    "status": "czynne"
+  },
+  "7": {
+    "name": "7",
+    "monitor/stanowisko": 2,
+    "rozmiar": 4,
+    "ilość gniazdek": 12,
+    "price": 65,
+    "status": "czynne"
+  },
+  "8": {
+    "name": "8",
+    "monitor/stanowisko": 2,
+    "rozmiar": 4,
+    "ilość gniazdek": 12,
+    "price": 65,
+    "status": "czynne"
+  },
+  "9": {
+    "name": "9",
+    "monitor/stanowisko": 1,
+    "rozmiar": 10,
+    "ilość gniazdek": 30,
+    "price": 65,
+    "status": "czynne"
+  },
+  "10": {
+    "name": "10",
+    "monitor/stanowisko": 2,
+    "rozmiar": 10,
+    "ilość gniazdek": 30,
+    "price": 65,
+    "status": "czynne"
+  }
+}
