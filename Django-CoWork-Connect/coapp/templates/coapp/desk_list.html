@@ -1,12 +1,17 @@
+
+Copy code
 {% extends 'coapp/base.html' %}
 
 {% block content %}
 <h2>DOSTĘPNOŚĆ BIUREK I CENNIK</h2>
-<div>
-    <ul>
-    {% for desk in desks %}
-        <li>{{ desk.name }} - Typ: {{ desk.desk_type }}, Cena: {{ desk.price }} zł/dzień, Status: {{ desk.status }}</li>
-    {% endfor %}
-    </ul>
-</div>
+{% for desk in desks %}
+  <div>
+    <h2>Biurko nr {{ desk.stock_number }}</h2>
+    <p>Ilość stanowisk/biurko: {{ desk.size }}</p>
+    <p>Ilość monitorów/stanowisko: {{ desk.monitor_number }}</p>
+    <p>Ilość gniazdek/biurko: {{ desk.power_socket_count }}</p>
+    <p>Cena: {{ desk.price }} zł</p>
+    <p>Status: {{ desk.status }}</p>
+  </div>
+{% endfor %}  {# Upewnij się, że ten tag jest na miejscu #}
 {% endblock %}

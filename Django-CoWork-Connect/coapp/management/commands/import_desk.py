@@ -16,11 +16,12 @@ class Command(BaseCommand):
             desks = json.load(file)
             for desk_id, desk_info in desks.items():
                 Desk.objects.create(
-                    desk_type=desk_info["desk_type"],
-                    monitor=desk_info["monitor"],
+                    stock_number=desk_info["name"],
                     size=desk_info["rozmiar"],
+                    monitor_number=desk_info["monitor/stanowisko"],
+                    power_socket_count=desk_info["ilość gniazdek"],
                     price=desk_info["price"],
-                    status=desk_info["status"],
-                    name=desk_info["name"]
+                    status=desk_info["status"]
+
                 )
         self.stdout.write(self.style.SUCCESS('Successfully imported desks'))
