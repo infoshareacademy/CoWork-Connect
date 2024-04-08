@@ -1,7 +1,7 @@
 from .forms import RegisterForm
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 #
 # # Create your views here.
 class RegisterView(CreateView):
@@ -11,3 +11,8 @@ class RegisterView(CreateView):
 
 class CustomLoginView(LoginView):
     template_name = 'authentication/login.html'
+    success_url = reverse_lazy('home')
+
+
+class CustomLogoutView(LogoutView):
+    pass

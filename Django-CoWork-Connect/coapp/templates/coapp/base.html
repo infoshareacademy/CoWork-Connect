@@ -14,7 +14,7 @@
             padding-top: 20px;
         }
 
-        .sidenav a, .dropdown-btn {
+        .sidenav a, .dropdown-btn, .sidenav .user-info {
             padding: 6px 8px 6px 16px;
             text-decoration: none;
             font-size: 25px;
@@ -28,7 +28,7 @@
             outline: none;
         }
 
-        .sidenav a:hover, .dropdown-btn:hover {
+        .sidenav a:hover, .dropdown-btn:hover, .sidenav .user-info {
             color: #f1f1f1;
         }
 
@@ -58,6 +58,7 @@
 
 <body>
     <div class="sidenav">
+
         <a href="/home">Home</a>
         <button class="dropdown-btn">MENU KLIENTA
             <i class="fa fa-caret-down"></i>
@@ -66,11 +67,37 @@
             <a href="#">NASZA OFERTA</a>
             <a href="/desks/">DOSTĘPNOŚĆ BIUREK I CENNIK</a>
             <a href="/reservation">REZERWACJA BIUREK</a>
-            <a href="{% url 'register' %}">REJESTRACJA UŻYTKOWNIKA</a>
-            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+            {% if user.is_authenticated %}
+                <div class="user-info">Hi {{ user.username }}!</div>
+                <a><form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                   <button type="submit">Log Out</button>
+                </form></a>
+            {% else %}
+                <div class="user-info">You are not logged in</div>
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
         </div>
         <a href="/admin">PANEL ADMINA</a>
     </div>
+
+<!--    <div class="sidenav">-->
+<!--        <a href="{% url 'home' %}">Home</a>-->
+<!--        <a href="{% url 'register' %}">Register</a>-->
+<!--        {% if user.is_authenticated %}-->
+<!--            <div class="user-info">Hi {{ user.username }}!</div>-->
+<!--            <a><form action="{% url 'logout' %}" method="post">-->
+<!--                {% csrf_token %}-->
+<!--               <button type="submit">Log Out</button>-->
+<!--            </form></a>-->
+<!--        {% else %}-->
+<!--            <div class="user-info">You are not logged in</div>-->
+<!--            <a href="{% url 'login' %}">Login</a>-->
+<!--        {% endif %}-->
+<!--    </div>-->
+
+
 
     <div id="content" class="main">
         <div class="row justify-content-center">
