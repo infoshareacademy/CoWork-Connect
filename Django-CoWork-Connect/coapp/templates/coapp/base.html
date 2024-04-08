@@ -44,10 +44,18 @@
 
 <body>
     <div class="sidenav">
-        <a href="/home">Home</a>
-        <a href="register/">Register</a>
-        <a href="login/">Login</a>
-    </div>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'register' %}">Register</a>
+        {% if user.is_authenticated %}
+            <h2>Hi {{ user.username }}!</h2>
+            <a><form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+               <button type="submit">Log Out</button>
+            </form></a>
+        {% else %}
+            <a>You are not logged in</a>
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}    </div>
 
     <div id="content", name="content", class="main">
         <div class="row justify-content-center">
