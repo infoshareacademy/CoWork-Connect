@@ -1,35 +1,38 @@
 from django import forms
-from django.contrib.auth.models import User
 from .models import Reservation, Desk
+
 
 class ReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
-        fields = ['desk', 'user', 'start_date', 'end_date', 'total_cost']
+        fields = ['desk', 'start_date', 'end_date']
+        labels = {
+            'desk': 'Dostępne biurka',
+            'start_date': 'Data początkowa',
+            'end_date': 'Data końcowa',
+        }
         widgets = {
-            'desk': forms.Select(attrs={'class': 'form-control'}),
-            'user': forms.Select(attrs={'class': 'form-control'}),
-            'start_date': forms.DateInput(attrs={'class': 'datepicker', 'type': 'date'}),
-            'end_date': forms.DateInput(attrs={'class': 'datepicker', 'type': 'date'}),
-            'total_cost': forms.HiddenInput(),
+            'start_date': forms.DateInput(attrs={'class': 'datepicker', 'type': 'text', 'autocomplete': 'off'}),
+            'end_date': forms.DateInput(attrs={'class': 'datepicker', 'type': 'text', 'autocomplete': 'off'}),
         }
 
     def __init__(self, *args, **kwargs):
         super(ReservationForm, self).__init__(*args, **kwargs)
-        self.fields['desk'].queryset = Desk.objects.filter(status='czynne') # Filtruje biurka tylko o statusie 'czynne'
-        self.fields['user'].queryset = User.objects.all() # Jeśli chcesz ograniczyć do określonych użytkowników, zmodyfikuj ten queryset
-        # Usuwa pole użytkownika, jeśli chcesz, aby użytkownik był ustawiany automatycznie (np. z request.user w widoku)
-        self.fields.pop('user')
+        # Aktualizacja queryset dla pola 'desk', aby zawierał atrybut 'data-price' dla każdej opcji
+        self.fields['desk'].queryset = Desk.objects.all()
+        self.fields['desk'].label_from_instance = self.label_from_instance_with_price
+
+    def label_from_instance_with_price(self, obj):
+        # Tutaj definiujemy, jak będzie wyglądała etykieta (i dodatkowe dane) dla każdej opcji w selekcie
+        # Uwzględniamy cenę jako atrybut data-price, który zostanie użyty w JavaScript
+        return f"{obj.stock_number} - {obj.size} stanowisk, cena: {obj.price} zł/dzień"
 
     def clean(self):
         cleaned_data = super().clean()
         start_date = cleaned_data.get('start_date')
         end_date = cleaned_data.get('end_date')
 
-        # Walidacja dat: start_date musi być wcześniejsza niż end_date
         if start_date and end_date and start_date >= end_date:
             raise forms.ValidationError('Data rozpoczęcia musi być wcześniejsza niż data zakończenia.')
-
-        # Tutaj możesz dodać więcej własnych metod walidacji
 
         return cleaned_data
