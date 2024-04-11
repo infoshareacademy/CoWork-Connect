@@ -1,0 +1,60 @@
+{% extends 'coapp/base.html' %}
+
+{% block content %}
+<h2>Rezerwacja biurka</h2>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="id_desk">Dostępne biurka:</label>
+        <select name="desk" id="id_desk" class="form-control">
+            {% for desk in form.fields.desk.queryset %}
+            <option value="{{ desk.pk }}" data-price="{{ desk.price }}">
+                Nr {{ desk.stock_number }}, ilość stanowisk: {{ desk.size }}, ilość monitorów: {{ desk.monitor_number }}, ilość gniazdek: {{ desk.power_socket_count }}, Cena: {{ desk.price }} zł/dzień
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="id_start_date">Data początkowa:</label>
+        {{ form.start_date }}
+    </div>
+    <div>
+        <label for="id_end_date">Data końcowa:</label>
+        {{ form.end_date }}
+    </div>
+    <div>Całkowity koszt: <span id="total-cost-display">0 zł</span></div>
+    <button type="submit">Zarezerwuj</button>
+</form>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Inicjalizacja Datepicker dla pól formularza
+    $("#id_start_date, #id_end_date").datepicker({
+        dateFormat: 'yy-mm-dd',
+        changeMonth: true,
+        changeYear: true
+    });
+    function updateTotalCost() {
+    var deskPrice = parseFloat($("#id_desk option:selected").data("price"));
+    var startDate = $("#id_start_date").datepicker("getDate");
+    var endDate = $("#id_end_date").datepicker("getDate");
+       $("#total-cost-display").text(`${totalCost.toFixed(2)} zł`);
+    }
+    else {
+        // Logowanie problemów z odczytem danych
+        if (!startDate) console.log("Problem z odczytem daty początkowej.");
+        if (!endDate) console.log("Problem z odczytem daty końcowej.");
+        if (isNaN(deskPrice)) console.log("Problem z odczytem ceny biurka.");
+    }
+}
+
+    // Wywołaj updateTotalCost przy zmianie wartości w formularzu
+    $("#id_desk, #id_start_date, #id_end_date").change(updateTotalCost);
+
+    // Wywołaj raz przy inicjalizacji, na wypadek gdyby wartości były wcześniej ustawione (np. przy edycji rezerwacji)
+    updateTotalCost();
+});
+</script>
+{% endblock %}
