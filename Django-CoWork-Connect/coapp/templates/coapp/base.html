@@ -67,24 +67,24 @@
     <div class="sidenav">
 
 
-        <a href="/home">Home</a>
+        <a href="/home">Strona główna</a>
         <button class="dropdown-btn">MENU KLIENTA
             <i class="fa fa-caret-down"></i>
         </button>
          <div class="dropdown-container">
-            <a href="#">NASZA OFERTA</a>
-            <a href="/desks/">DOSTĘPNOŚĆ BIUREK I CENNIK</a>
-            <a href="/reservation">REZERWACJA BIUREK</a>
-            <a href="{% url 'register' %}">Register</a>
+            <a href="#">Nasza oferta</a>
+            <a href="/desks/">Dostępne biurka i cennik</a>
+            <a href="/reservation">Rezerwacja biurek</a>
+            <a href="{% url 'register' %}">Zarejestruj się</a>
             {% if user.is_authenticated %}
-                <div class="user-info">Hi {{ user.username }}!</div>
+                <div class="user-info">Cześć {{ user.username }}!</div>
                 <a><form action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
-                   <button type="submit">Log Out</button>
+                   <button type="submit">Wyloguj</button>
                 </form></a>
             {% else %}
-                <div class="user-info">You are not logged in</div>
-                <a href="{% url 'login' %}">Login</a>
+                <div class="user-info">Nie jesteś zalogowany</div>
+                <a href="{% url 'login' %}">Zaloguj</a>
             {% endif %}
         </div>
         <a href="/admin">PANEL ADMINA</a>
