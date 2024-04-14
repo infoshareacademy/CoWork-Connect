@@ -10,6 +10,7 @@ class ReservationCreateView(CreateView):
     template_name = 'coapp/reservation_form.html'
     success_url = reverse_lazy('home')  # Przekierowanie po pomyślnej rezerwacji
 
+
 def home(request):
     return render(request, "coapp/home.html", {})
 def offer(request):
@@ -40,3 +41,9 @@ def desk_list(request):
 def reservation(request):
     desks = Desk.objects.all()  # Pobierasz wszystkie biurka z bazy danych
     return render(request, 'coapp/reservation_form.html', {'desks': desks})
+
+# Create your views here.
+def home(response):
+    response.user
+    return render(response, "coapp/home.html", {})
+
