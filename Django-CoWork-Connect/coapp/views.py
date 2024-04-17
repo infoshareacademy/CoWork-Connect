@@ -2,7 +2,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
-from .models import Reservation, Desk
+from .models import Reservation, Desk, Settings
 from .forms import ReservationForm
 class ReservationCreateView(CreateView):
     model = Reservation
@@ -25,7 +25,8 @@ def pricing(request, id):
     return render(request, 'coapp/pricing.html')
 
 def contact(request):
-    return render(request, 'coapp/contact.html')
+    contact_fields = Settings.objects.all()
+    return render(request, 'coapp/contact.html', {'contact_fields': contact_fields})
 
 
 class MyLoginView(LoginView):

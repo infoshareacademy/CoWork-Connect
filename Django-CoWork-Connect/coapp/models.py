@@ -21,3 +21,20 @@ class Reservation(models.Model):
 
     def __str__(self):
         return f"Rezerwacja {self.id} - Użytkownik: {self.user.username}"
+
+
+class SingletonModel(models.Model):
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super().save(*args, **kwargs)
+
+class Settings(SingletonModel):
+    city = models.CharField(max_length=50, null=True)
+    street = models.CharField(max_length=50, null=True)
+    house_number = models.CharField(max_length=50, null=True)
+    email_address = models.CharField(max_length=50, null=True)
+    phone_number = models.CharField(max_length=50, null=True)
+    working_days = models.CharField(max_length=50, null=True)
+    working_hours = models.CharField(max_length=50, null=True)
+    vat_number = models.CharField(max_length=50, null=True, blank=True)
+    account_number = models.CharField(max_length=50, null=True, blank=True)

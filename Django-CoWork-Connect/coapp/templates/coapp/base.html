@@ -4,7 +4,7 @@
     <style type="text/css">
         .sidenav{
             height: 100%;
-            width: 220px;
+            width: 250px;
             position: fixed;
             z-index: 1;
             top: 0;
@@ -67,15 +67,16 @@
     <div class="sidenav">
 
 
-        <a href="/home">Strona główna</a>
+        <a href="/home">STRONA GŁÓWNA</a>
         <button class="dropdown-btn">MENU KLIENTA
             <i class="fa fa-caret-down"></i>
         </button>
          <div class="dropdown-container">
-            <a href="#">Nasza oferta</a>
-            <a href="/desks/">Dostępne biurka i cennik</a>
-            <a href="/reservation">Rezerwacja biurek</a>
-            <a href="{% url 'register' %}">Zarejestruj się</a>
+            <a href="#">NASZA OFERTA</a>
+            <a href="/desks/">DOSTĘPNE BIURKA I CENNIK</a>
+            <a href="/reservation">ZAREZERWUJ BIURKO</a>
+            <a href="/contact/">KONTAKT</a>
+            <a href="{% url 'register' %}">ZAREJESTRUJ SIĘ</a>
             {% if user.is_authenticated %}
                 <div class="user-info">Cześć {{ user.username }}!</div>
                 <a><form action="{% url 'logout' %}" method="post">
