@@ -2,7 +2,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
-from .models import Reservation, Desk
+from .models import Reservation, Desk, OurOffer
 from .forms import ReservationForm
 class ReservationCreateView(CreateView):
     model = Reservation
@@ -47,3 +47,6 @@ def home(response):
     response.user
     return render(response, "coapp/home.html", {})
 
+def offer(request):
+    offers = OurOffer.objects.all()
+    return render(request, 'coapp/offer.html', {'offers': offers})

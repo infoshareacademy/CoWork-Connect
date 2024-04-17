@@ -21,3 +21,16 @@ class Reservation(models.Model):
 
     def __str__(self):
         return f"Rezerwacja {self.id} - Użytkownik: {self.user.username}"
+
+
+class SingletonModel(models.Model):
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super().save(*args, **kwargs)
+
+class OurOffer(SingletonModel):
+    title = models.CharField(max_length=50)
+    description_1_subtitle = models.TextField(default="Insert your title for first paragraph...")
+    description_1 = models.TextField(default="Insert your first paragraph's description...")
+    description_2_subtitle = models.TextField(default="",blank=True)
+    description_2 = models.TextField(default="", blank=True)

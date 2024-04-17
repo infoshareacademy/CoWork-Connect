@@ -1,0 +1,16 @@
+{% extends 'coapp/base.html' %}
+
+{% block content %}
+{% for offer in offers %}
+  <div>
+      <center><h1>{{ offer.title }}</h1></center>
+      <br/>
+    <h4>{{ offer.description_1_subtitle }}</h4>
+    <p align="justify">{{ offer.description_1 }}</p>
+  <br/>
+  <h4>{{ offer.description_2_subtitle }}</h4>
+    <p align="justify">{{ offer.description_2 }}</p>
+
+  </div>
+{% endfor %}  {# Upewnij się, że ten tag jest na miejscu #}
+{% endblock %}
