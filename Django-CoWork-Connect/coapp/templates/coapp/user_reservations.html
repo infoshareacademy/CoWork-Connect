@@ -1,0 +1,15 @@
+{% extends 'coapp/base.html' %}
+
+{% block content %}
+<h2>Twoje rezerwacje</h2>
+<ul>
+    {% for reservation in reservations %}
+    <li>
+        Twój numer rezerwacji: {{ reservation.id }}, Biurko: {{ reservation.desk.name }}, od {{ reservation.start_date }} do {{ reservation.end_date }}
+        <a href="{% url 'cancel_reservation' reservation.id %}">Anuluj rezerwację</a>
+    </li>
+    {% empty %}
+    <li>Nie masz żadnych rezerwacji.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

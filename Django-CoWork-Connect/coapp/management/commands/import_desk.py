@@ -16,10 +16,10 @@ class Command(BaseCommand):
             desks = json.load(file)
             for desk_id, desk_info in desks.items():
                 Desk.objects.create(
-                    stock_number=desk_info["name"],
+                    name=desk_info["name"],
                     size=desk_info["rozmiar"],
-                    monitor_number=desk_info["monitor/stanowisko"],
-                    power_socket_count=desk_info["ilość gniazdek"],
+                    monitors=desk_info["monitor/stanowisko"],
+                    sockets=desk_info["ilość gniazdek"],
                     price=desk_info["price"],
                     status=desk_info["status"]
 
