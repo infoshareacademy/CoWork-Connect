@@ -1,11 +1,17 @@
 {% extends 'coapp/base.html' %}
 
+{% load static %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{% static 'coapp/reservation_styles.css' %}">
+{% endblock %}
+
 {% block content %}
-<h2>Potwierdzenie Rezerwacji</h2>
+<h2>Potwierdzenie rezerwacji</h2>
 <div class="reservation-details">
     <p>Dziękujemy za dokonanie rezerwacji, {{ request.user.username }}.</p>
-    <p><strong>Numer rezerwacji:</strong> {{ reservation.id }}</p>
-    <p><strong>Biurko:</strong> {{ reservation.desk.name }} ({{ reservation.desk.size }} stanowisk)</p>
+    <p><strong>Twój numer rezerwacji:</strong> {{ reservation.id }}</p>
+    <p><strong>Biurko:</strong> {{ reservation.desk.stock_number }} ({{ reservation.desk.size }} stanowisk)</p>
     <p><strong>Cena za dzień:</strong> {{ reservation.desk.price }} zł</p>
     <p><strong>Data rozpoczęcia:</strong> {{ reservation.start_date }}</p>
     <p><strong>Data zakończenia:</strong> {{ reservation.end_date }}</p>

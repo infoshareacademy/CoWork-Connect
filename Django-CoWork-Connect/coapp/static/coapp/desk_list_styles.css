@@ -1,0 +1,57 @@
+.desk-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.desk {
+    width: 18%;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.desk:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.reserve-button {
+    display: block;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+.reserve-button:hover {
+    background-color: #45a049;
+}
+
+.desk::before {
+    content: '';
+    display: block;
+    height: 20px;
+    width: 100%;
+    background-color: #666;
+    box-shadow: inset 0 -2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.desk::after {
+    content: '';
+    display: block;
+    height: 4px;
+    width: 25%;
+    background-color: #333;
+    margin: 5px auto 0 auto;
+}
+
+.desk:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}

@@ -1,9 +1,21 @@
-{% extends "coapp/base.html" %}
+{% extends 'coapp/base.html' %}
+
 {% block content %}
 <h2>Rezerwuj biurko</h2>
+
+{% if error_messages %}
+<div class="messages">
+    {% for message in error_messages %}
+    <div class="error">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
 <form method="post" action="{% url 'reserve_desk' desk.id %}">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Rezerwuj</button>
 </form>
+
+<a href="{% url 'desk_list' %}">Powrót do listy biurek</a>
 {% endblock %}

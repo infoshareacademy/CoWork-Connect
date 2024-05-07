@@ -1,17 +1,24 @@
 {% extends 'coapp/base.html' %}
 
+{% load static %}
+
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'coapp/desk_list_styles.css' %}">
+{% endblock %}
+
 {% block content %}
-<h2>Dostępność biurek i cennik</h2>
-<button onclick="window.location.reload();">Odśwież listę biurek</button>
-{% for desk in desks %}
-    <div>
-        <h2>Biurko nr {{ desk.name }}</h2>
+<h2>DOSTĘPNOŚĆ BIUREK I CENNIK/REZERWACJA</h2>
+<div class="desk-container">
+    {% for desk in desks %}
+    <div class="desk">
+        <h3>Biurko nr {{ desk.stock_number }}</h3>
         <p>Ilość stanowisk/biurko: {{ desk.size }}</p>
         <p>Ilość monitorów/stanowisko: {{ desk.monitor_number }}</p>
         <p>Ilość gniazdek/biurko: {{ desk.power_socket_count }}</p>
         <p>Cena: {{ desk.price }} zł</p>
         <p>Status: {{ desk.status }}</p>
-         <a href="{% url 'reserve_desk' desk.id %}">Rezerwuj</a>
+        <a href="{% url 'reserve_desk' desk.id %}" class="reserve-button">Rezerwuj</a>
     </div>
-{% endfor %}
+    {% endfor %}
+</div>
 {% endblock %}

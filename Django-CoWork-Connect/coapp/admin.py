@@ -1,11 +1,14 @@
 from django.contrib import admin
 from .models import Desk, Reservation
 
+
 class DeskAdmin(admin.ModelAdmin):
-    list_display = ('name', 'monitors', 'size', 'sockets', 'price', 'status')
-    list_filter = ('status', 'size')
-    search_fields = ('name', 'status')
+    list_display = ('stock_number', 'size', 'monitor_number', 'power_socket_count', 'price', 'status')
+    list_filter = ('monitor_number', 'size', 'status')
+    search_fields = ['stock_number', 'status']
     actions = ['cancel_reservations']
+
+
 class ReservationAdmin(admin.ModelAdmin):
     list_display = ('desk', 'id', 'user', 'start_date', 'end_date', 'total_cost')
     list_filter = ('start_date', 'end_date', 'user')
@@ -25,4 +28,3 @@ class ReservationAdmin(admin.ModelAdmin):
 
 admin.site.register(Reservation, ReservationAdmin)
 admin.site.register(Desk, DeskAdmin)
-
