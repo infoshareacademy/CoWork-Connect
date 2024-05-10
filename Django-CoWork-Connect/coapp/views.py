@@ -1,6 +1,5 @@
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect, get_object_or_404
-from django.utils import timezone
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from .models import Desk, Reservation
@@ -17,38 +16,32 @@ def desk_list(request):
 @login_required
 def reserve_desk(request, desk_id):
     desk = get_object_or_404(Desk, id=desk_id)
-    error_messages = []
     if request.method == 'POST':
         form = ReservationForm(request.POST)
         if form.is_valid():
+            # Logika obliczania kosztów rezerwacji
             start_date = form.cleaned_data['start_date']
             end_date = form.cleaned_data['end_date']
-            today = timezone.localdate()
+            total_days = (end_date - start_date).days + 1
+            total_cost = desk.price * total_days
 
-            if start_date < today:
-                error_messages.append('Data rezerwacji nie może być wcześniejsza od dzisiejszej.')
-            elif end_date <= start_date:
-                error_messages.append('Data zakończenia musi być późniejsza niż data rozpoczęcia.')
+            # Zapisywanie rezerwacji
+            reservation = form.save(commit=False)
+            reservation.user = request.user
+            reservation.desk = desk
+            reservation.total_cost = total_cost  # Ustawienie obliczonego kosztu
+            reservation.save()
 
-            if not error_messages:
-                total_days = (end_date - start_date).days + 1
-                total_cost = desk.price * total_days
-                reservation = form.save(commit=False)
-                reservation.user = request.user
-                reservation.desk = desk
-                reservation.total_cost = total_cost
-                reservation.save()
-                desk.status = 'zajęte'
-                desk.save()
-                return redirect('reservation_confirmation', reservation_id=reservation.id)
-        else:
-            error_messages.append('Formularz zawiera błędy.')
+            # Aktualizacja statusu biurka
+            desk.status = 'zajęte'
+            desk.save()
 
+            # Przekierowanie do strony potwierdzenia rezerwacji
+            return redirect('reservation_confirmation', reservation_id=reservation.id)
     else:
         form = ReservationForm(initial={'desk': desk})
 
-    return render(request, 'coapp/reservation_form.html',
-                  {'form': form, 'desk': desk, 'error_messages': error_messages})
+    return render(request, 'coapp/reservation_form.html', {'form': form, 'desk': desk})
 
 
 @login_required

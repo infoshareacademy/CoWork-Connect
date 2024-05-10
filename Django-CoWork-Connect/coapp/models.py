@@ -5,9 +5,9 @@ class Desk(models.Model):
     stock_number = models.CharField(max_length=50)  # numer biurka
     size = models.IntegerField()  # ilość stanowisk na biurko
     monitor_number = models.IntegerField()  # ilość monitorów na stanowisko
-    power_socket_count = models.IntegerField()  # ilość gniazdek na biurko
+    power_socket_count = models.IntegerField(default=1)  # ilość gniazdek na biurko
     price = models.DecimalField(max_digits=6, decimal_places=2)  # cena
-    status = models.CharField(max_length=10)  # status, np. "czynne"
+    status = models.CharField(max_length=50)  # status, np. "czynne"
 
     def update_status(self, new_status):
         self.status = new_status
@@ -24,4 +24,3 @@ class Reservation(models.Model):
 
     def __str__(self):
         return f"Rezerwacja {self.id} - Użytkownik: {self.user.username}"
-
