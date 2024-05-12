@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import SingletonModel
+from coapp.models import SingletonModel
 
 class SingletonModelTestCase(TestCase):
     def test_singleton_creation_and_save(self):
