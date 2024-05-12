@@ -2,15 +2,18 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Desk(models.Model):
-    stock_number = models.CharField(max_length=50)
-    size = models.IntegerField()
-    monitor_number = models.IntegerField(default=0)
-    power_socket_count = models.IntegerField(default=1)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    status = models.CharField(max_length=50)
+    stock_number = models.CharField(max_length=50)  # numer biurka
+    size = models.IntegerField()  # ilość stanowisk na biurko
+    monitor_number = models.IntegerField()  # ilość monitorów na stanowisko
+    power_socket_count = models.IntegerField(default=1)  # ilość gniazdek na biurko
+    price = models.DecimalField(max_digits=6, decimal_places=2)  # cena
+    status = models.CharField(max_length=50)  # status, np. "czynne"
 
+    def update_status(self, new_status):
+        self.status = new_status
+        self.save()
     def __str__(self):
-        return f"Biurko nr {self.stock_number}, Ilość stanowisk/biurko: {self.size}, Ilość monitorów/stanowisko: {self.monitor_number}, Ilość gniazdek/biurko: {self.power_socket_count}, Cena: {self.price} zł, Status: {self.status}"
+        return (f"Biurko nr {self.stock_number}")
 
 class Reservation(models.Model):
     desk = models.ForeignKey(Desk, on_delete=models.CASCADE)

@@ -1,0 +1,27 @@
+{% extends 'coapp/base.html' %}
+
+{% load static %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{% static 'coapp/reservation_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<h2>Twoje rezerwacje</h2>
+<div class="reservations-container">
+    {% for reservation in reservations %}
+    <div class="reservation">
+        <h3>Rezerwacja #{{ reservation.id }}</h3>
+        <p>Biurko: {{ reservation.desk.stock_number }}</p>
+        <p>Od: {{ reservation.start_date|date:"Y-m-d" }}</p>
+        <p>Do: {{ reservation.end_date|date:"Y-m-d" }}</p>
+        <p>Całkowity koszt: {{ reservation.total_cost }} zł</p>
+        <a href="{% url 'cancel_reservation' reservation.id %}" class="cancel-button">Anuluj rezerwację</a>
+    </div>
+    {% empty %}
+    <div class="no-reservations">
+        Nie masz żadnych rezerwacji.
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

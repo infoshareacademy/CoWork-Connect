@@ -26,4 +26,3 @@ urlpatterns = [
     path('', include("coapp.urls")),
     path('', include("django.contrib.auth.urls")),
 ]
-
