@@ -60,10 +60,9 @@
     <div class="dropdown-container">
         <a href="{% url 'offer' %}">Nasza oferta</a>
         <a href="{% url 'desk_list' %}">Dostępne biurka i cennik/rezerwacja</a>
-        <a href="{% url 'user_reservations' %}">Zobacz swoje rezerwacje</a>
-        <a href="{% url 'register' %}">Zarejestruj się</a>
         {% if user.is_authenticated %}
         <a href="{% url 'user_reservations' %}">Zobacz swoje rezerwacje</a>
+
         <div class="user-info">Cześć {{ user.username }}!</div>
 
         <a>
