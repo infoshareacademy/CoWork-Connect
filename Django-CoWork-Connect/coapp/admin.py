@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Desk, Reservation
+from .models import Desk, Reservation, Setting
 
 class DeskAdmin(admin.ModelAdmin):
     list_display = ('stock_number', 'size', 'monitor_number', 'power_socket_count', 'price', 'status')
@@ -23,3 +23,7 @@ class ReservationAdmin(admin.ModelAdmin):
 
 admin.site.register(Reservation, ReservationAdmin)
 admin.site.register(Desk, DeskAdmin)
+
+@admin.register(Setting)
+class SettingsAdmin(admin.ModelAdmin):
+    pass

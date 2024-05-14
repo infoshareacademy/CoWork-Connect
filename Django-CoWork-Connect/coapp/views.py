@@ -2,7 +2,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from .models import Desk, Reservation
+from .models import Desk, Reservation, Setting
 from .forms import ReservationForm
 from django.contrib import messages
 
@@ -86,8 +86,8 @@ def offer(request):
 
 
 def contact(request):
-    """Wyświetla stronę kontaktową."""
-    return render(request, 'coapp/contact.html')
+    contact_fields = Setting.objects.all()
+    return render(request, 'coapp/contact.html', {'contact_fields': contact_fields})
 
 
 class MyLoginView(LoginView):
