@@ -64,6 +64,7 @@
         <a href="{% url 'register' %}">Zarejestruj się</a>
         {% if user.is_authenticated %}
         <a href="{% url 'user_reservations' %}">Zobacz swoje rezerwacje</a>
+
         <div class="user-info">Cześć {{ user.username }}!</div>
 
         <a>
