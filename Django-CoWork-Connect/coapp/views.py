@@ -81,8 +81,8 @@ def home(request):
 
 
 def offer(request):
-    """Wyświetla ofertę biurek."""
-    return render(request, 'coapp/offer.html')
+    offers = OurOffer.objects.all()
+    return render(request, 'coapp/offer.html', {'offers': offers})
 
 
 def contact(request):
@@ -97,7 +97,3 @@ class MyLoginView(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('home')
-
-def offer(request):
-    offers = OurOffer.objects.all()
-    return render(request, 'coapp/offer.html', {'offers': offers})
