@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Desk, Reservation
+from coapp.models import Desk, Reservation
 
 class DeskAdmin(admin.ModelAdmin):
     list_display = ('stock_number', 'size', 'monitor_number', 'power_socket_count', 'price', 'status')

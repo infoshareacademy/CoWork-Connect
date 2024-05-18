@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'coapp.apps.CoappConfig',
-    'register.apps.RegisterConfig'
+    'register.apps.RegisterConfig',
 ]
 
 MIDDLEWARE = [
