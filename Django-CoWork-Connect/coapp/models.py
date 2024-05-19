@@ -25,14 +25,28 @@ class Reservation(models.Model):
     def __str__(self):
         return f"Rezerwacja {self.id} - Użytkownik: {self.user.username}"
 
+
 class SingletonModel(models.Model):
+    class Meta:
+        abstract = True
+
     def save(self, *args, **kwargs):
-        self.pk = 1
-        super().save(*args, **kwargs)
+        self.pk = 1  # Ensure the primary key is always 1
+        if self.__class__.objects.exists() and not self.pk:
+            self.pk = self.__class__.objects.first().pk
+        super(SingletonModel, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        pass  # Prevent deletion of singleton instance
+
+    @classmethod
+    def load(cls):
+        obj, created = cls.objects.get_or_create(pk=1)
+        return obj
 
 class OurOffer(SingletonModel):
     title = models.CharField(max_length=50)
     description_1_subtitle = models.TextField(default="Insert your title for first paragraph...")
     description_1 = models.TextField(default="Insert your first paragraph's description...")
-    description_2_subtitle = models.TextField(default="",blank=True)
+    description_2_subtitle = models.TextField(default="", blank=True)
     description_2 = models.TextField(default="", blank=True)
