@@ -50,3 +50,10 @@ class OurOffer(SingletonModel):
     description_1 = models.TextField(default="Insert your first paragraph's description...")
     description_2_subtitle = models.TextField(default="", blank=True)
     description_2 = models.TextField(default="", blank=True)
+
+class ServiceTerm(SingletonModel):
+    title = models.CharField(max_length=50)
+    description_1_subtitle = models.TextField(default="Insert your title for first paragraph...")
+    description_1 = models.TextField(default="Insert your first paragraph's description...")
+    description_2_subtitle = models.TextField(default="", blank=True)
+    description_2 = models.TextField(default="", blank=True)
