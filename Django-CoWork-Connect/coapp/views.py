@@ -2,7 +2,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from .models import Desk, Reservation, OurOffer
+from .models import Desk, Reservation, OurOffer, ServiceTerm
 from .forms import ReservationForm
 from django.contrib import messages
 
@@ -84,6 +84,9 @@ def offer(request):
     offers = OurOffer.objects.all()
     return render(request, 'coapp/offer.html', {'offers': offers})
 
+def term(request):
+    terms = ServiceTerm.objects.all()
+    return render(request, 'coapp/terms.html', {'terms': terms})
 
 def contact(request):
     """Wyświetla stronę kontaktową."""
