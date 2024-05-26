@@ -59,6 +59,7 @@
     <button class="dropdown-btn">MENU KLIENTA</button>
     <div class="dropdown-container">
         <a href="{% url 'offer' %}">Nasza oferta</a>
+        <a href="{% url 'contact' %}">Dane kontaktowe</a>
         <a href="{% url 'desk_list' %}">Dostępne biurka i cennik/rezerwacja</a>
         {% if user.is_authenticated %}
         <a href="{% url 'user_reservations' %}">Zobacz swoje rezerwacje</a>
