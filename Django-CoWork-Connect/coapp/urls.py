@@ -19,4 +19,6 @@ urlpatterns = [
     path('reservation/<int:reservation_id>/', views.reservation_confirmation, name='reservation_confirmation'),
     path('reservations/', user_reservations, name='user_reservations'),
     path('cancel-reservation/<int:reservation_id>/', cancel_reservation, name='cancel_reservation'),
+    path('terms/', views.term, name='terms'),
+
 ]

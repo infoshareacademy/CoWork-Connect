@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'coapp/base.html' %}
+
+{% block content %}
+{% for term in terms %}
+  <div>
+      <center><h1>{{ term.title }}</h1></center>
+      <br/>
+    <h4>{{ term.description_1_subtitle }}</h4>
+    <p align="justify">{{ term.description_1 }}</p>
+  <br/>
+  <h4>{{ term.description_2_subtitle }}</h4>
+    <p align="justify">{{ term.description_2 }}</p>
+
+  </div>
+{% endfor %}  {# Upewnij się, że ten tag jest na miejscu #}
+{% endblock %}
+</body>
+</html>
