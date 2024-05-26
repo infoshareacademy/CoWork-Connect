@@ -50,3 +50,7 @@ class OurOffer(SingletonModel):
     description_1 = models.TextField(default="Insert your first paragraph's description...")
     description_2_subtitle = models.TextField(default="", blank=True)
     description_2 = models.TextField(default="", blank=True)
+
+class Logo(models.Model):
+    image = models.ImageField(upload_to='logos/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Desk, Reservation, OurOffer
+from .models import Desk, Reservation, OurOffer, Logo
 
 
 class DeskAdmin(admin.ModelAdmin):
@@ -24,7 +24,9 @@ class ReservationAdmin(admin.ModelAdmin):
 
 admin.site.register(Reservation, ReservationAdmin)
 admin.site.register(Desk, DeskAdmin)
+admin.site.register(Logo)
 
 @admin.register(OurOffer)
 class OurOfferAdmin(admin.ModelAdmin):
     pass
+

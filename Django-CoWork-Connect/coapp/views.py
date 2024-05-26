@@ -2,15 +2,16 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from .models import Desk, Reservation, OurOffer
+from .models import Desk, Reservation, OurOffer, Logo
 from .forms import ReservationForm
 from django.contrib import messages
 
+logo = Logo.objects.last()
 
 @login_required
 def desk_list(request):
     desks = Desk.objects.filter(status="czynne")  # lub inne odpowiednie zapytanie
-    return render(request, 'coapp/desk_list.html', {'desks': desks})
+    return render(request, 'coapp/desk_list.html', {'desks': desks, 'logo': logo})
 
 
 @login_required
@@ -41,7 +42,7 @@ def reserve_desk(request, desk_id):
     else:
         form = ReservationForm(initial={'desk': desk})
 
-    return render(request, 'coapp/reservation_form.html', {'form': form, 'desk': desk})
+    return render(request, 'coapp/reservation_form.html', {'form': form, 'desk': desk, 'logo': logo})
 
 
 @login_required
@@ -52,14 +53,15 @@ def reservation_confirmation(request, reservation_id):
         'desk': reservation.desk,
         'start_date': reservation.start_date,
         'end_date': reservation.end_date,
-        'total_cost': reservation.total_cost
+        'total_cost': reservation.total_cost,
+        'logo': logo
     })
 
 
 @login_required
 def user_reservations(request):
     reservations = Reservation.objects.filter(user=request.user)
-    return render(request, 'coapp/user_reservations.html', {'reservations': reservations})
+    return render(request, 'coapp/user_reservations.html', {'reservations': reservations, 'logo': logo})
 
 
 def cancel_reservation(request, reservation_id):
@@ -77,17 +79,17 @@ def cancel_reservation(request, reservation_id):
 
 def home(request):
     """Wyświetla stronę główną."""
-    return render(request, "coapp/home.html", {})
+    return render(request, "coapp/home.html", {'logo': logo})
 
 
 def offer(request):
     offers = OurOffer.objects.all()
-    return render(request, 'coapp/offer.html', {'offers': offers})
+    return render(request, 'coapp/offer.html', {'offers': offers, 'logo': logo})
 
 
 def contact(request):
     """Wyświetla stronę kontaktową."""
-    return render(request, 'coapp/contact.html')
+    return render(request, 'coapp/contact.html', {'logo': logo})
 
 
 class MyLoginView(LoginView):
