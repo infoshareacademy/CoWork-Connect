@@ -4,6 +4,8 @@ from .views import desk_list
 from . import views
 from .views import user_reservations
 from .views import cancel_reservation
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -18,4 +20,4 @@ urlpatterns = [
     path('reservation/<int:reservation_id>/', views.reservation_confirmation, name='reservation_confirmation'),
     path('reservations/', user_reservations, name='user_reservations'),
     path('cancel-reservation/<int:reservation_id>/', cancel_reservation, name='cancel_reservation'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

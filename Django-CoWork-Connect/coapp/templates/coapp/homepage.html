@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homepage</title>
+</head>
+<body>
+    <h1>Welcome to the Homepage</h1>
+    {% if logo %}
+        <img src="{{ logo.image.url }}" alt="Logo">
+    {% else %}
+        <p>No logo uploaded.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-from .models import Reservation
+from .models import Reservation, Logo
 
 class ReservationForm(forms.ModelForm):
     class Meta:
