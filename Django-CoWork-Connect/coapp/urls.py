@@ -10,6 +10,7 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('login/', LoginView.as_view(template_name='coapp/login.html'), name='login'),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
+    path('not_logged_in/', views.not_logged_in, name='not_logged_in'),
     path('register/', include('register.urls')),
     path('offer/', views.offer, name='offer'),
     path('desks/', desk_list, name='desk_list'),
