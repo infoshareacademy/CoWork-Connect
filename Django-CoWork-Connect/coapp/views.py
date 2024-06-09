@@ -7,14 +7,16 @@ from .forms import ReservationForm
 from django.contrib import messages
 
 
-@login_required
+
 def desk_list(request):
     desks = Desk.objects.filter(status="czynne")  # lub inne odpowiednie zapytanie
     return render(request, 'coapp/desk_list.html', {'desks': desks})
 
 
-@login_required
 def reserve_desk(request, desk_id):
+    if not request.user.is_authenticated:
+        return redirect('not_logged_in')
+
     desk = get_object_or_404(Desk, id=desk_id)
     if request.method == 'POST':
         form = ReservationForm(request.POST)
@@ -97,3 +99,6 @@ class MyLoginView(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('home')
+
+def not_logged_in(request):
+    return render(request, 'coapp/not_logged_in.html')
