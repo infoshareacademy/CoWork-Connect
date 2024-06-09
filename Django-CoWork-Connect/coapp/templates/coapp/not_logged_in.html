@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Nie jesteś zalogowany</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 1.2em;
+            color: #666;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .button-register {
+            background-color: #008CBA;
+        }
+        .button-register:hover {
+            background-color: #007BB5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nie jesteś zalogowany</h1>
+        <p>Proszę zaloguj się lub zarejestruj się, jeśli jesteś nowym użytkownikiem.</p>
+        <div class="buttons">
+            <a href="{% url 'login' %}" class="button">Zaloguj się</a>
+            <a href="{% url 'register' %}" class="button button-register">Zarejestruj się</a>
+        </div>
+    </div>
+</body>
+</html>

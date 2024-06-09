@@ -58,12 +58,13 @@
     <a href="{% url 'home' %}">Strona główna</a>
     <button class="dropdown-btn">MENU KLIENTA</button>
     <div class="dropdown-container">
-        <a href="#">Nasza oferta</a>
+        <a href="{% url 'offer' %}">Nasza oferta</a>
         <a href="{% url 'desk_list' %}">Dostępne biurka i cennik/rezerwacja</a>
-        <a href="{% url 'register' %}">Zarejestruj się</a>
         {% if user.is_authenticated %}
-        <div class="user-info">Cześć {{ user.username }}!</div>
         <a href="{% url 'user_reservations' %}">Zobacz swoje rezerwacje</a>
+
+        <div class="user-info">Cześć {{ user.username }}!</div>
+
         <a>
             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
@@ -72,6 +73,7 @@
         </a>
         {% else %}
         <div class="user-info">Nie jesteś zalogowany</div>
+        <a href="{% url 'register' %}">Zarejestruj się</a>
         <a href="{% url 'login' %}">Zaloguj</a>
         {% endif %}
     </div>

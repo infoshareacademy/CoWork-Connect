@@ -1,5 +1,6 @@
 from django.contrib import admin
-from coapp.models import Desk, Reservation
+from coapp.models import Desk, Reservation, OurOffer
+
 
 class DeskAdmin(admin.ModelAdmin):
     list_display = ('stock_number', 'size', 'monitor_number', 'power_socket_count', 'price', 'status')
@@ -23,3 +24,7 @@ class ReservationAdmin(admin.ModelAdmin):
 
 admin.site.register(Reservation, ReservationAdmin)
 admin.site.register(Desk, DeskAdmin)
+
+@admin.register(OurOffer)
+class OurOfferAdmin(admin.ModelAdmin):
+    pass
