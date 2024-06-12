@@ -181,6 +181,7 @@ class ReservationFormTest(TestCase):
 
 from coapp.models import OurOffer
 from coapp.models import OurOffer, ServiceTerm
+from coapp.models import OurOffer, ServiceTerm
 class SingletonModelTestCase(TestCase):
     def test_singleton_creation_and_save(self):
         singleton_instance = OurOffer.load()
