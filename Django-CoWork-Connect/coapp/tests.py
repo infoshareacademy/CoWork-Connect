@@ -6,7 +6,6 @@ from datetime import date
 from django.urls import reverse
 from .forms import ReservationForm
 
-
 class DeskModelTest(TestCase):
     def setUp(self):
         self.desk = Desk.objects.create(
@@ -179,9 +178,6 @@ class ReservationFormTest(TestCase):
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['end_date'], ['Data zakończenia musi być późniejsza niż data rozpoczęcia.'])
 
-from coapp.models import OurOffer
-from coapp.models import OurOffer, ServiceTerm
-from coapp.models import OurOffer, ServiceTerm
 class SingletonModelTestCase(TestCase):
     def test_singleton_creation_and_save(self):
         singleton_instance = OurOffer.load()
