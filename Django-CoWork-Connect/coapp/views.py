@@ -2,7 +2,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from .models import Desk, Reservation, OurOffer, ServiceTerm
+from .models import Desk, Reservation, OurOffer, ContactForm, ServiceTerm
 from .forms import ReservationForm
 from django.contrib import messages
 
@@ -91,9 +91,8 @@ def term(request):
     return render(request, 'coapp/terms.html', {'terms': terms})
 
 def contact(request):
-    """Wyświetla stronę kontaktową."""
-    return render(request, 'coapp/contact.html')
-
+    contact_fields = ContactForm.objects.all()
+    return render(request, 'coapp/contact.html', {'contact_fields': contact_fields})
 
 class MyLoginView(LoginView):
     """Widok logowania z przekierowaniem zalogowanych użytkowników."""

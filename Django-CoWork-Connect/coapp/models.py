@@ -51,6 +51,17 @@ class OurOffer(SingletonModel):
     description_2_subtitle = models.TextField(default="", blank=True)
     description_2 = models.TextField(default="", blank=True)
 
+class ContactForm(SingletonModel):
+    city = models.CharField(max_length=50, null=True)
+    street = models.CharField(max_length=50, null=True)
+    house_number = models.CharField(max_length=50, null=True)
+    email_address = models.CharField(max_length=50, null=True)
+    phone_number = models.CharField(max_length=50, null=True)
+    working_days = models.CharField(max_length=50, null=True)
+    working_hours = models.CharField(max_length=50, null=True)
+    vat_number = models.CharField(max_length=50, null=True, blank=True)
+    account_number = models.CharField(max_length=50, null=True, blank=True)
+
 class ServiceTerm(SingletonModel):
     title = models.CharField(max_length=50)
     description_1_subtitle = models.TextField(default="Insert your title for first paragraph...")
