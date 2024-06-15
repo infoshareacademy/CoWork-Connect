@@ -6,8 +6,8 @@ from .views import user_reservations
 from .views import cancel_reservation
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('home/', views.home, name='home'),
+    path('', views.mainpage, name='mainpage'),
+    path('home/', views.mainpage, name='home'),
     path('login/', LoginView.as_view(template_name='coapp/login.html'), name='login'),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path('not_logged_in/', views.not_logged_in, name='not_logged_in'),

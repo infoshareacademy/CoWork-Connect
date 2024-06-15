@@ -74,3 +74,16 @@ class ServiceTerm(SingletonModel):
     description_4 = models.TextField(default="", blank=True)
     description_5_subtitle = models.TextField(default="", blank=True)
     description_5 = models.TextField(default="", blank=True)
+
+class MainPage(SingletonModel):
+    title = models.CharField(max_length=50)
+    description_1_subtitle = models.TextField(default="Insert your title for first paragraph...")
+    description_1 = models.TextField(default="Insert your first paragraph's description...")
+    description_2_subtitle = models.TextField(default="", blank=True)
+    description_2 = models.TextField(default="", blank=True)
+    description_3_subtitle = models.TextField(default="", blank=True)
+    description_3 = models.TextField(default="", blank=True)
+    description_4_subtitle = models.TextField(default="", blank=True)
+    description_4 = models.TextField(default="", blank=True)
+    description_5_subtitle = models.TextField(default="", blank=True)
+    description_5 = models.TextField(default="", blank=True)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Desk, Reservation, OurOffer, ContactForm, ServiceTerm
+from .models import Desk, Reservation, OurOffer, ContactForm, ServiceTerm, MainPage
 
 
 class DeskAdmin(admin.ModelAdmin):
@@ -35,4 +35,8 @@ class ServiceTermAdmin(admin.ModelAdmin):
 
 @admin.register(ContactForm)
 class ContactFormAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(MainPage)
+class MainPageAdmin(admin.ModelAdmin):
     pass
