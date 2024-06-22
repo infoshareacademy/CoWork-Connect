@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potwierdzenie anulowania rezerwacji</title>
+    <style>
+        .reservation-details {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .reservation-details p {
+            margin: 5px 0;
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Potwierdzenie anulowania rezerwacji</h2>
+    <div class="cancel-reservation-details">
+        <p>Twoja rezerwacja została anulowana.</p>
+        <p><strong>Numer rezerwacji:</strong> {{ reservation_id }}</p>
+        <p><strong>Biurko:</strong> {{ desk_stock_number }}</p>
+        <p><strong>Data rozpoczęcia:</strong> {{ start_date }}</p>
+        <p><strong>Data zakończenia:</strong> {{ end_date }}</p>
+        <p><strong>Całkowity koszt:</strong> {{ total_cost }} zł</p>
+    </div>
+</body>
+</html>

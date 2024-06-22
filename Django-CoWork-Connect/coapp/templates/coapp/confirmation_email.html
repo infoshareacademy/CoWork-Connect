@@ -1,0 +1,33 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potwierdzenie rezerwacji</title>
+    <style>
+        .reservation-details {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .reservation-details p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>Potwierdzenie rezerwacji</h2>
+    <div class="reservation-details">
+        <p>Dziękujemy za dokonanie rezerwacji, {{ reservation.user.username }}.</p>
+        <p><strong>Twój numer rezerwacji:</strong> {{ reservation.id }}</p>
+        <p><strong>Biurko:</strong> {{ reservation.desk.stock_number }} ({{ reservation.desk.size }} stanowisk)</p>
+        <p><strong>Cena za dzień:</strong> {{ reservation.desk.price }} zł</p>
+        <p><strong>Data rozpoczęcia:</strong> {{ reservation.start_date }}</p>
+        <p><strong>Data zakończenia:</strong> {{ reservation.end_date }}</p>
+        <p><strong>Całkowity koszt:</strong> {{ reservation.total_cost }} zł</p>
+        <p><strong>Twój email:</strong> {{ reservation.user.email }}</p>
+    </div>
+</body>
+</html>

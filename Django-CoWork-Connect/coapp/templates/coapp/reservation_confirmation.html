@@ -8,7 +8,7 @@
 
 {% block content %}
 <h2>Potwierdzenie rezerwacji</h2>
-<div class="reservation-details">
+<div class="reservations-container">
     <p>Dziękujemy za dokonanie rezerwacji, {{ request.user.username }}.</p>
     <p><strong>Twój numer rezerwacji:</strong> {{ reservation.id }}</p>
     <p><strong>Biurko:</strong> {{ reservation.desk.stock_number }} ({{ reservation.desk.size }} stanowisk)</p>
