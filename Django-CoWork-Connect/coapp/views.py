@@ -2,7 +2,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from .models import Desk, Reservation, OurOffer, ContactForm, ServiceTerm
+from .models import Desk, Reservation, OurOffer, ContactForm, ServiceTerm, MainPage
 from .forms import ReservationForm
 from register.forms import RegisterForm
 from django.contrib import messages
@@ -133,6 +133,9 @@ def confirm_cancel_reservation(request, reservation_id):
 
 def home(request):
     return render(request, "coapp/home.html", {})
+def mainpage(request):
+    mainpages = MainPage.objects.all()
+    return render(request, 'coapp/home.html', {'mainpages': mainpages})
 
 def offer(request):
     offers = OurOffer.objects.all()
