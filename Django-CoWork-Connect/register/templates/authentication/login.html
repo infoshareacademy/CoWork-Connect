@@ -9,13 +9,16 @@ Logowanie
         {% csrf_token %}
         <div class="form-group">
             <label for="id_username">Użytkownik</label>
-            {{ form.username }}
+            <br>
+            <input type="text" name="username" value="" id="id_username">
         </div>
         <div class="form-group">
             <label for="id_password">Hasło</label>
-            {{ form.password }}
+            <br>
+            <input type="text" name="password" value="" id="id_password">
         </div>
-         <p>Nie masz jeszcze konta? Stwórz je <a href="{% url 'register' %}">tutaj</a>.</p>
-        <button type="submit" class="btn btn-success">Zaloguj się</button>
+        <button type="submit" class="btn btn-success" style="margin-bottom: 20px;">Zaloguj się</button>
+
+        <p>Nie masz jeszcze konta? Stwórz je <a href="{% url 'register' %}">tutaj</a>.</p>
     </form>
 {% endblock %}
