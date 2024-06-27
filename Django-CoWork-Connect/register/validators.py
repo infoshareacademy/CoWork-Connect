@@ -7,7 +7,6 @@ from django.contrib.auth.password_validation import (
     NumericPasswordValidator
 )
 
-
 class CustomUserAttributeSimilarityValidator(UserAttributeSimilarityValidator):
     def __init__(self, user_attributes=('username', 'email'), max_similarity=0.7):
         self.user_attributes = user_attributes
