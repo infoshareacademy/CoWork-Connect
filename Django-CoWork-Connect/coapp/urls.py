@@ -12,8 +12,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='coapp/login.html'), name='login'),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path('not_logged_in/', views.not_logged_in, name='not_logged_in'),
-    path('register/', views.register, name='register'),
-    path('register/', include('register.urls')),
     path('offer/', views.offer, name='offer'),
     path('desks/', desk_list, name='desk_list'),
     path('contact/', views.contact, name='contact'),
@@ -23,6 +21,5 @@ urlpatterns = [
     path('cancel-reservation/<int:reservation_id>/', cancel_reservation, name='cancel_reservation'),
     path('confirm-cancel-reservation/<int:reservation_id>/', confirm_cancel_reservation,
          name='confirm_cancel_reservation'),
-    path('terms/', views.term, name='terms'),path('test-email/', views.test_email, name='test_email'),
-
+    path('terms/', views.term, name='terms'),
 ]

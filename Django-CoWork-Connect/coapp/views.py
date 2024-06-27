@@ -19,24 +19,24 @@ def desk_list(request):
     desks = Desk.objects.filter(status="czynne")
     return render(request, 'coapp/desk_list.html', {'desks': desks})
 
-def register(request):
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            # Wyślij e-mail powitalny
-            send_mail(
-                'Witamy w CoApp',
-                'Dziękujemy za rejestrację w CoApp.',
-                'magdalenakapka33@gmail.com',
-                [user.email],
-                fail_silently=False,
-            )
-            return redirect('home')
-    else:
-        form = RegisterForm()
-    return render(request, 'register/register.html', {'form': form})
+# def register(request):
+#     if request.method == 'POST':
+#         form = RegisterForm(request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             login(request, user)
+#             # Wyślij e-mail powitalny
+#             send_mail(
+#                 'Witamy w CoApp',
+#                 'Dziękujemy za rejestrację w CoApp.',
+#                 'magdalenakapka33@gmail.com',
+#                 [user.email],
+#                 fail_silently=False,
+#             )
+#             return redirect('home')
+#     else:
+#         form = RegisterForm()
+#     return render(request, 'register/register.html', {'form': form})
 
 def reserve_desk(request, desk_id):
     if not request.user.is_authenticated:
@@ -78,16 +78,6 @@ def reservation_confirmation(request, reservation_id):
         'end_date': reservation.end_date,
         'total_cost': reservation.total_cost
     })
-
-def test_email(request):
-    send_mail(
-        'Testowy e-mail',
-        'To jest testowy e-mail.',
-        'magdalenakapka33@gmail.com',
-        ['magdalenakapka33@gmail.com'],
-        fail_silently=False,
-    )
-    return HttpResponse("Testowy e-mail został wysłany.")
 
 @login_required
 def user_reservations(request):
