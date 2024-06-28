@@ -19,25 +19,6 @@ def desk_list(request):
     desks = Desk.objects.filter(status="czynne")
     return render(request, 'coapp/desk_list.html', {'desks': desks})
 
-# def register(request):
-#     if request.method == 'POST':
-#         form = RegisterForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             # Wyślij e-mail powitalny
-#             send_mail(
-#                 'Witamy w CoApp',
-#                 'Dziękujemy za rejestrację w CoApp.',
-#                 'magdalenakapka33@gmail.com',
-#                 [user.email],
-#                 fail_silently=False,
-#             )
-#             return redirect('home')
-#     else:
-#         form = RegisterForm()
-#     return render(request, 'register/register.html', {'form': form})
-
 def reserve_desk(request, desk_id):
     if not request.user.is_authenticated:
         return redirect('not_logged_in')
