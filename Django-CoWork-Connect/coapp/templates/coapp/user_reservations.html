@@ -16,7 +16,7 @@
         <p>Od: {{ reservation.start_date|date:"Y-m-d" }}</p>
         <p>Do: {{ reservation.end_date|date:"Y-m-d" }}</p>
         <p>Całkowity koszt: {{ reservation.total_cost }} zł</p>
-        <a href="{% url 'cancel_reservation' reservation.id %}" class="cancel-button">Anuluj rezerwację</a>
+        <a href="{% url 'confirm_cancel_reservation' reservation.id %}" class="btn btn-danger">Anuluj</a>
     </div>
     {% empty %}
     <div class="no-reservations">
