@@ -22,5 +22,4 @@ urlpatterns = [
     path('confirm-cancel-reservation/<int:reservation_id>/', confirm_cancel_reservation,
          name='confirm_cancel_reservation'),
     path('terms/', views.term, name='terms'),
-    ]
-
+]
