@@ -117,7 +117,7 @@ python manage.py runscript import_desk
    In the folder /CoWork-Connect/Django-CoWork-Connect/, create a file named .env with the following content:
    
     ```bash
-    SECRET_KEY=2$o4))= write here your secret key
+    SECRET_KEY= write here your secret key
     EMAIL_HOST_USER='write here host email'
     EMAIL_HOST_PASSWORD='write here host password'
     DEFAULT_FROM_EMAIL='write here default from email'
