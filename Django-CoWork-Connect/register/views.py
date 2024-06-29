@@ -2,7 +2,6 @@ from .forms import RegisterForm
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView
-
 from django.core.mail import send_mail
 from django.conf import settings
 
