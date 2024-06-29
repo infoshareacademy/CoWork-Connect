@@ -112,6 +112,18 @@ python manage.py runscript import_desk
     ```bash
     celery -A CoWorkConnect worker --loglevel=info
     ```
+3. **Create a .env file:**
+
+   In the folder /CoWork-Connect/Django-CoWork-Connect/, create a file named .env with the following content:
+   
+    ```bash
+    SECRET_KEY=2$o4))= write here your secret key
+    EMAIL_HOST_USER='write here host email'
+    EMAIL_HOST_PASSWORD='write here host password'
+    DEFAULT_FROM_EMAIL='write here default from email'
+
+    ```
+   
 
 ## Admin Panel
 
