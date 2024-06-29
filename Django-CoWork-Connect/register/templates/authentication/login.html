@@ -15,10 +15,24 @@ Logowanie
         <div class="form-group">
             <label for="id_password">Hasło</label>
             <br>
-            <input type="text" name="password" value="" id="id_password">
+            <div class="input-group-append">
+                <input type="password" name="password" value="" id="id_password">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button", id="togglePassword">Pokaż</button>
+                </div>
+            </div>
         </div>
         <button type="submit" class="btn btn-success" style="margin-bottom: 20px;">Zaloguj się</button>
 
         <p>Nie masz jeszcze konta? Stwórz je <a href="{% url 'register' %}">tutaj</a>.</p>
     </form>
+
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function() {
+        var passwordField = document.getElementById('id_password');
+        var type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordField.setAttribute('type', type);
+        this.textContent = type === 'password' ? 'Pokaż' : 'Ukryj';
+        });
+    </script>
 {% endblock %}

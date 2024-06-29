@@ -4,7 +4,6 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.conf import settings
-
 class RegisterView(CreateView):
     form_class = RegisterForm
     template_name = 'authentication/register.html'
