@@ -15,6 +15,8 @@ CoWork-Connect is a Django-based web application designed for booking desks in a
 
 ## Prerequisites
 - Python 3.10 or higher
+- Celery 5.0.5 or higher
+- Redis 3.5.3 or higher
 - Git
 - Virtualenv (recommended)
 
